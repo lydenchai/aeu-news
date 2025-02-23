@@ -1,0 +1,7 @@
+{
+  "name": "aeu-news",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
