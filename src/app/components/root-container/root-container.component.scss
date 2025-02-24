@@ -1,0 +1,51 @@
+.ion-header {
+  width: 100%;
+}
+
+.university-logo {
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+}
+
+.open-menu {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-btn {
+  display: flex;
+  gap: 10px;
+
+  button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #eeeeee;
+    color: black !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+ion-icon {
+  font-size: 22px;
+}
+
+ion-menu-button {
+  color: black !important;
+}
