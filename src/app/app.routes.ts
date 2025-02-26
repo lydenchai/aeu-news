@@ -7,6 +7,11 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
         path: 'home',
         children: [
           {
