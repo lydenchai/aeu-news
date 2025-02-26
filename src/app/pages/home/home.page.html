@@ -1,61 +1,21 @@
 <ion-content class="ion-padding">
-  <!-- Breaking News Section -->
-  <div class="breaking-news">
-    <h1>Breaking News</h1>
+  <div class="header">
+    <h3>{{ greeting }}</h3>
+    <h6>Here's your news feed</h6>
   </div>
-
-  <!-- News Section -->
-  <div class="news-section">
-    <h2>News</h2>
-    <ion-list>
-      <ion-item>
-        <ion-label>
-          <h3>Exploring Cloud Computing Technology for Business</h3>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
-
-  <hr />
-
-  <!-- Recommendation Section -->
   <div class="recommendation-section">
     <h2>Recommendation</h2>
     <ion-list>
-      <!-- News Recommendations -->
+      @for (news of list(); track news.id) {
       <ion-item>
         <ion-label>
-          <h3>News</h3>
-          <p>Exploring Cloud Computing Technology for Business</p>
-          <p>March 01 2025</p>
+          <h3>{{ news.title }}</h3>
+          <p>{{ news.category }}</p>
+          <p>{{ news.date }}</p>
         </ion-label>
+        <ion-button [routerLink]="['/home', news.id]" fill="clear">View Details</ion-button>
       </ion-item>
-
-      <!-- Event Recommendations -->
-      <ion-item>
-        <ion-label>
-          <h3>Event</h3>
-          <p>Exploring Cloud Computing Technology for Business</p>
-          <p>March 01 2025</p>
-        </ion-label>
-      </ion-item>
-
-      <!-- Repeat for other recommendations -->
-      <ion-item>
-        <ion-label>
-          <h3>News</h3>
-          <p>Exploring Cloud Computing Technology for Business</p>
-          <p>March 01 2025</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          <h3>News</h3>
-          <p>Exploring Cloud Computing Technology for Business</p>
-          <p>March 01 2025</p>
-        </ion-label>
-      </ion-item>
+      }
     </ion-list>
   </div>
 </ion-content>

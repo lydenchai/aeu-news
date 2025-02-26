@@ -1,25 +1,32 @@
 import { Routes } from '@angular/router';
-import { RootContainerComponent } from './components/root-container/root-container.component';
+import { TabsPage } from './pages/tabs/tabs.page';
 
 export const routes: Routes = [
   {
     path: '',
-    component: RootContainerComponent,
+    component: TabsPage,
     children: [
       {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
-      {
         path: 'home',
-        loadComponent: () =>
-          import('./pages/home/home.page').then((m) => m.HomePage),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/home/home.page').then((m) => m.HomePage),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./pages/news-detail/news-detail.page').then(
+                (m) => m.NewsDetailPage
+              ),
+          },
+        ],
       },
       {
         path: 'favorite',
         loadComponent: () =>
-          import('./pages/settings/settings.page').then((m) => m.SettingsPage),
+          import('./pages/favorite/favorite.page').then((m) => m.FavoritePage),
       },
       {
         path: 'profile',

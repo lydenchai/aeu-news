@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>News Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+@if(news(); as news ) {
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title size="medium">News Detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="ion-padding">
+    <!-- News Image -->
+    @if (news.images) {
+    <img [src]="news.images[0]" [alt]="news.title" class="news-image" />
+    }
+
+    <!-- News Title -->
+    <h1 class="news-title">{{ news.title }}</h1>
+
+    <!-- News Content -->
+    <div class="news-content">
+      <p>{{ news.content }}</p>
+    </div>
+    @for (image of news.images?.slice(1); track $index) {
+    <img [src]="image" [alt]="news.title" class="news-image" />
+    }
+  </div>
+</ion-content>
+}
+@if (!news()) {
+<div class="ion-padding">
+  <p>No news available.</p>
+</div>
+}
