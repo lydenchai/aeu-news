@@ -7,12 +7,11 @@ import {
   IonButtons,
   IonIcon,
   IonTitle,
-  IonSegmentButton,
-  IonLabel,
-  IonSegment,
   IonList,
   IonItem,
   IonButton,
+  IonChip,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
@@ -24,11 +23,10 @@ import { News } from 'src/app/types/news';
   styleUrls: ['./search.page.scss'],
   standalone: true,
   imports: [
+    IonLabel,
+    IonChip,
     IonButton,
     IonButtons,
-    IonSegment,
-    IonLabel,
-    IonSegmentButton,
     IonTitle,
     IonIcon,
     IonContent,
@@ -41,7 +39,7 @@ import { News } from 'src/app/types/news';
   ],
 })
 export class SearchPage implements OnInit {
-  selectedTab = signal<string>('news'); // Default to 'news'
+  selectedTab = signal<string>('news');
   searchTerm = signal<string>('');
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
@@ -50,6 +48,11 @@ export class SearchPage implements OnInit {
 
   ngOnInit(): void {
     this.fetchNews();
+  }
+
+  setTab(tab: string) {
+    this.selectedTab.set(tab); // Updated to use signal setter
+    this.filterList();
   }
 
   fetchNews(): void {
@@ -61,11 +64,11 @@ export class SearchPage implements OnInit {
 
   filterList(): void {
     const search = this.searchTerm().toLowerCase();
-    const tab = this.selectedTab();
+    const tab = this.selectedTab(); // Use signal getter
 
     this.filteredList.set(
       this.list()
-        .filter((item) => item.category === tab) // Filter by selected tab (news/events)
+        .filter((item) => item.category === tab) // Ensure case match
         .filter((item) => item.title.toLowerCase().includes(search)) // Search filter
     );
   }

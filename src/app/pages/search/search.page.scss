@@ -57,5 +57,19 @@
   .tabs-content {
     display: flex;
     justify-content: center;
+
+    ion-chip {
+      font-size: 14px;
+    }
   }
+}
+
+::ng-deep ion-chip.active {
+  background: #37ce9b !important;
+  color: #fff !important;
+}
+
+::ng-deep ion-chip.inactive {
+  background: #eeeeee !important;
+  color: #888 !important;
 }

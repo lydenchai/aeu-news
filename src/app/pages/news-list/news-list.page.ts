@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import {
   IonContent,
@@ -10,6 +9,7 @@ import {
   IonIcon,
   IonHeader,
   IonToolbar,
+  IonTitle,
 } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
@@ -23,12 +23,12 @@ import { News } from 'src/app/types/news';
     IonToolbar,
     IonHeader,
     IonContent,
-    FormsModule,
     IonItem,
     IonLabel,
     IonList,
     IonButton,
     IonIcon,
+    IonTitle,
     RouterLink,
   ],
 })

@@ -14,7 +14,6 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-
   <div class="header ion-padding">
     <div>
       <h4>Discover</h4>
@@ -27,15 +26,15 @@
   </div>
 
   <!-- Tabs -->
-  <div class="tabs-content ion-padding">
-    <ion-segment [(ngModel)]="selectedTab" (ionChange)="filterList()">
-      <ion-segment-button value="news">
-        <ion-label>News</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="event">
-        <ion-label>Events</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+  <div class="tabs-content ion-padding-horizontal">
+    <ion-chip (click)="setTab('news')" [style.background]="selectedTab() === 'news' ? '#37ce9b' : '#eeeeee'"
+      [style.color]="selectedTab() === 'news' ? '#fff' : '#888'">
+      News
+    </ion-chip>
+    <ion-chip (click)="setTab('event')" [style.background]="selectedTab() === 'event' ? '#37ce9b' : '#eeeeee'"
+      [style.color]="selectedTab() === 'event' ? '#fff' : '#888'">
+      Events
+    </ion-chip>
   </div>
 
   <!-- Content -->
@@ -45,7 +44,7 @@
       <ion-item>
         <ion-label>
           <h4>{{ item.title }}</h4>
-          <p>{{ item.category }}</p>
+          <p class="ion-text-capitalize">{{ item.category }}</p>
           <p>{{ item.date }}</p>
         </ion-label>
         <ion-button [routerLink]="['/news', item.id]" fill="clear">View Details</ion-button>
