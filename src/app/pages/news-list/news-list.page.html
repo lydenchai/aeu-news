@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <div class="header">
+    <div>
+      <h4>{{ greeting }}</h4>
+      <h6>Here's your news feed</h6>
+    </div>
+    <button class="search" (click)="onSearch()">
+      <ion-icon name="search-outline"></ion-icon>
+    </button>
+  </div>
+  <div>
+    <h2>Recommendation</h2>
+    <ion-list>
+      @for (news of list(); track news.id) {
+      <ion-item>
+        <ion-label>
+          <h4>{{ news.title }}</h4>
+          <p>{{ news.category }}</p>
+          <p>{{ news.date }}</p>
+        </ion-label>
+        <ion-button [routerLink]="['/news', news.id]" fill="clear">View Details</ion-button>
+      </ion-item>
+      }
+    </ion-list>
+  </div>
+</ion-content>

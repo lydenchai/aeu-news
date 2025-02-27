@@ -27,7 +27,6 @@ import { Subject, takeUntil } from 'rxjs';
     IonTabButton,
     IonTabs,
     FormsModule,
-    IonTabs,
     IonTabButton,
     IonTabBar,
     IonLabel,
@@ -45,8 +44,8 @@ export class TabsPage implements OnInit, OnDestroy {
     this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const segments = event.url.split('/');
-        const lastSegment = segments.pop(); // Get the last segment
-        this.showTabs = isNaN(Number(lastSegment)); // Hide tabs if the last segment is a number
+        const lastSegment = segments.pop();
+        this.showTabs = isNaN(Number(lastSegment)) && lastSegment !== 'search';
       }
     });
   }

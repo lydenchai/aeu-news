@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar color="transparent">
+      <ion-buttons slot="start">
+        <button class="back-button" (click)="onBack()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="header ion-padding">
+    <div>
+      <h4>Discover</h4>
+      <p>All news and events from AEU</p>
+    </div>
+    <div class="search-box">
+      <ion-icon name="search-outline"></ion-icon>
+      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="filterList()">
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-content ion-padding">
+    <ion-segment [(ngModel)]="selectedTab" (ionChange)="filterList()">
+      <ion-segment-button value="news">
+        <ion-label>News</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="event">
+        <ion-label>Events</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Content -->
+  <div class="list-item">
+    <ion-list>
+      @for (item of filteredList(); track item.id) {
+      <ion-item>
+        <ion-label>
+          <h4>{{ item.title }}</h4>
+          <p>{{ item.category }}</p>
+          <p>{{ item.date }}</p>
+        </ion-label>
+        <ion-button [routerLink]="['/news', item.id]" fill="clear">View Details</ion-button>
+      </ion-item>
+      }
+    </ion-list>
+  </div>
+</ion-content>

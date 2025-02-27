@@ -1,7 +1,7 @@
 import { MongoObject } from './mongo-object';
 
 export interface News extends MongoObject {
-  title?: string;
+  title?: any;
   category?: string;
   description?: string;
   content?: string;

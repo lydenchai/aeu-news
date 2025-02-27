@@ -4,29 +4,41 @@ import { TabsPage } from './pages/tabs/tabs.page';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login.page').then((m) => m.LoginPage),
+  },
+  {
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
-      {
-        path: 'home',
+        path: 'all-news',
         children: [
           {
             path: '',
             loadComponent: () =>
-              import('./pages/home/home.page').then((m) => m.HomePage),
-          },
-          {
-            path: ':id',
-            loadComponent: () =>
-              import('./pages/news-detail/news-detail.page').then(
-                (m) => m.NewsDetailPage
+              import('./pages/news-list/news-list.page').then(
+                (m) => m.NewsListPage
               ),
           },
+          {
+            path: 'search',
+            loadComponent: () =>
+              import('./pages/search/search.page').then((m) => m.SearchPage),
+          },
         ],
+      },
+      {
+        path: 'news/:id',
+        loadComponent: () =>
+          import('./pages/news-detail/news-detail.page').then(
+            (m) => m.NewsDetailPage
+          ),
       },
       {
         path: 'favorite',
@@ -39,11 +51,6 @@ export const routes: Routes = [
           import('./pages/profile/profile.page').then((m) => m.ProfilePage),
       },
     ],
-  },
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./pages/login/login.page').then((m) => m.LoginPage),
   },
   {
     path: '**',

@@ -6,3 +6,7 @@ ion-tab-bar {
 ion-tab-button.router-link-active {
   color: #37ce9b !important;
 }
+
+ion-tab-button ion-icon {
+  font-size: 22px;
+}

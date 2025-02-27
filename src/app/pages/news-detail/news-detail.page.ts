@@ -54,7 +54,7 @@ export class NewsDetailPage implements OnInit {
     });
   }
 
-  goBack() {
-    this.router.navigate(['/home']);
+  onBack() {
+    this.router.navigate(['/all-news']);
   }
 }
