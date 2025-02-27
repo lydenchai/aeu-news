@@ -39,6 +39,7 @@
 
   <!-- Content -->
   <div class="list-item">
+    @if(filteredList().length > 0){
     <ion-list>
       @for (item of filteredList(); track item.id) {
       <ion-item>
@@ -51,5 +52,10 @@
       </ion-item>
       }
     </ion-list>
+    }
+    @if (filteredList().length <= 0) { <div class="ion-padding ion-text-center">
+      <p>No {{ selectedTab() === 'news' ? 'news' : 'events' }} found 🥺</p>
+  </div>
+  }
   </div>
 </ion-content>
