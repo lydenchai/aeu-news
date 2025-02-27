@@ -21,7 +21,7 @@
     </div>
     <div class="search-box">
       <ion-icon name="search-outline"></ion-icon>
-      <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="filterList()">
+      <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="onSearchInput($event)" />
     </div>
   </div>
 

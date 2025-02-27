@@ -49,7 +49,7 @@ export class SearchPage implements OnInit {
   }
 
   setTab(tab: string) {
-    this.selectedTab.set(tab); // Updated to use signal setter
+    this.selectedTab.set(tab);
     this.filterList();
   }
 
@@ -60,9 +60,15 @@ export class SearchPage implements OnInit {
     });
   }
 
+  onSearchInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.searchTerm.set(inputElement.value);
+    this.filterList();
+  }
+
   filterList(): void {
     const search = this.searchTerm().toLowerCase();
-    const tab = this.selectedTab(); // Use signal getter
+    const tab = this.selectedTab();
 
     this.filteredList.set(
       this.list()
