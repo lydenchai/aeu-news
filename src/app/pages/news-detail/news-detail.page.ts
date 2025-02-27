@@ -53,6 +53,6 @@ export class NewsDetailPage implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/all-news']);
+    window.history.back();
   }
 }
