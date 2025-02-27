@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
   IonContent,
   IonHeader,
@@ -7,8 +6,11 @@ import {
   IonToolbar,
   IonButtons,
   IonIcon,
+  IonRow,
+  IonButton,
+  IonCol,
 } from '@ionic/angular/standalone';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 
@@ -18,21 +20,23 @@ import { News } from 'src/app/types/news';
   styleUrls: ['./news-detail.page.scss'],
   standalone: true,
   imports: [
+    IonCol,
+    IonButton,
+    IonRow,
     IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
-    FormsModule,
     IonButtons,
     IonIcon,
   ],
 })
 export class NewsDetailPage implements OnInit {
+  isSaved: boolean = false;
   news = signal<News | null>(null);
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private dataService: DataService
   ) {}
 
@@ -49,6 +53,12 @@ export class NewsDetailPage implements OnInit {
           error: (err) => console.error('Error fetching news:', err),
         });
       }
+    });
+  }
+
+  onSave(id: number) {
+    this.dataService.toggleSave(id).subscribe((saved) => {
+      this.isSaved = !this.isSaved;
     });
   }
 

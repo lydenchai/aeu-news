@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
   IonTabs,
   IonTabButton,
@@ -26,7 +25,6 @@ import { Subject, takeUntil } from 'rxjs';
     IonTabBar,
     IonTabButton,
     IonTabs,
-    FormsModule,
     IonTabButton,
     IonTabBar,
     IonLabel,

@@ -21,7 +21,7 @@
     </div>
     <div class="search-box">
       <ion-icon name="search-outline"></ion-icon>
-      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="filterList()">
+      <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="filterList()">
     </div>
   </div>
 
@@ -53,9 +53,10 @@
       }
     </ion-list>
     }
-    @if (filteredList().length <= 0) { <div class="ion-padding ion-text-center">
+    @else {
+    <div class="ion-padding ion-text-center">
       <p>No {{ selectedTab() === 'news' ? 'news' : 'events' }} found 🥺</p>
-  </div>
-  }
+    </div>
+    }
   </div>
 </ion-content>

@@ -22,10 +22,9 @@
   margin-bottom: 16px;
 }
 
-.back-button {
+button {
   width: 40px;
   height: 40px;
-  margin-left: 10px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -35,4 +34,17 @@
     font-size: 18px;
     color: #000000;
   }
+}
+
+.back-button {
+  margin-left: 16px;
+}
+.save-button {
+  margin-right: 10px;
+}
+
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { IonContent } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
@@ -7,7 +6,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  imports: [IonContent, FormsModule],
+  imports: [IonContent],
 })
 export class LoginPage {
   constructor(private router: Router) {}

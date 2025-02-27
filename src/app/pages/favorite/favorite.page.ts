@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, signal } from '@angular/core';
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
   IonToolbar,
+  IonHeader,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonButton,
+  IonTitle,
 } from '@ionic/angular/standalone';
+import { DataService } from 'src/app/services/data.service';
+import { News } from 'src/app/types/news';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorite',
@@ -14,16 +19,31 @@ import {
   styleUrls: ['./favorite.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
     IonToolbar,
-    CommonModule,
-    FormsModule,
+    IonHeader,
+    IonContent,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonButton,
+    IonTitle,
+    RouterLink,
   ],
 })
 export class FavoritePage implements OnInit {
-  constructor() {}
+  greeting: string = '';
+  readonly list = signal<News[]>([]);
 
-  ngOnInit() {}
+  constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.fetchFavoriteNews();
+  }
+
+  // Fetch news data from the data service
+  fetchFavoriteNews(): void {
+    this.dataService.getFavoriteNews().subscribe((res) => {
+      this.list.set(res);
+    });
+  }
 }

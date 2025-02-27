@@ -7,7 +7,6 @@ import { News } from '../types/news';
   providedIn: 'root',
 })
 export class DataService extends BaseCrudService<News> {
-  // Fake data array
   private fakeData: News[] = [
     {
       id: 1,
@@ -15,9 +14,9 @@ export class DataService extends BaseCrudService<News> {
         'កិច្ចទទួលស្វាគមន៍គណៈប្រតិភូអញ្ជើញមកពីអង្គការវិទ្យាស្ថានតស៊ូមតិ និងគោលនយោបាយ (API) និងអង្គការម្លប់បៃតង',
       category: 'news',
       description: 'Explore the top tourist attractions around the world.',
-      content:
-        'ព្រឹកថ្ងៃព្រហស្បតិ៍ ៣រោច ខែបុស្ស ឆ្នាំរោង ឆស័ក ព.ស.២៥៦៨ ត្រូវនឹងថ្ងៃទី១៦ ខែមករា ឆ្នាំ២០២៥ លោក ស៊ុន សេដ្ឋា សាកលវិទ្យាធិការ បានដឹកនាំគណៈគ្រប់គ្រងនៃសាកលវិទ្យាល័យ អាស៊ី អឺរ៉ុប ទទួលស្វាគមន៍គណៈប្រតិភូអញ្ជើញមកពីអង្គការវិទ្យាស្ថានតស៊ូមតិ និងគោលនយោបាយ (API) និងអង្គការម្លប់បៃតង ដើម្បីជម្រាបជូនពី គម្រោង ការកសាងសាមគ្គីភាពអាស៊ានតែមួយ និងនិរន្តរភាពនៃភាពជាដៃគូរវាង យុវជន អង្គការសង្គមស៊ីវិល និងរដ្ឋសមាជិក(A-SASSY) និងណែនាំគោលបំណងកម្មវិធីអប់រំបរិស្ថាន(EEP) និងបង្ហាញពីគោលបំណងចង់បង្កើតកិច្ចសហប្រតិបត្តការរវាងគ្នានិងគ្នានាពេលអនាគត។',
+      content: 'ព្រឹកថ្ងៃព្រហស្បតិ៍ ៣រោច ខែបុស្ស ឆ្នាំរោង ឆស័ក ព.ស.២៥៦៨...',
       date: 'October 5, 2023',
+      save: false,
       images: [
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-56_1737168404.jpg',
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-54_1737168427.jpg',
@@ -31,9 +30,9 @@ export class DataService extends BaseCrudService<News> {
       title: 'The Best Restaurants in Paris',
       category: 'news',
       description: 'Discover the finest dining experiences in Paris.',
-      content:
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      content: 'Duis aute irure dolor in reprehenderit in voluptate...',
       date: 'October 6, 2023',
+      save: false,
       images: [
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-56_1737168404.jpg',
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-54_1737168427.jpg',
@@ -44,11 +43,12 @@ export class DataService extends BaseCrudService<News> {
     },
     {
       id: 3,
-      title: 'Top 10 Hiking Trails in the World',
+      title: 'The Best Restaurants in Paris',
       category: 'event',
-      description: 'Find out the best hiking trails for your next adventure.',
-      content: 'Euismod tempor incididunt ut labore et dolore magna aliqua.',
-      date: 'October 7, 2023',
+      description: 'Discover the finest dining experiences in Paris.',
+      content: 'Duis aute irure dolor in reprehenderit in voluptate...',
+      date: 'October 6, 2023',
+      save: false,
       images: [
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-56_1737168404.jpg',
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-54_1737168427.jpg',
@@ -59,14 +59,35 @@ export class DataService extends BaseCrudService<News> {
     },
   ];
 
-  // Get a list of news items
+  private savedNews: News[] = []; // List of saved news items
+
+  // Get all news items
   getList(): Observable<News[]> {
     return of(this.fakeData);
   }
 
-  // Get a news item by ID
+  // Get a single news item by ID
   getOne(id: number): Observable<News | undefined> {
     const newsItem = this.fakeData.find((item) => item.id === id);
     return of(newsItem);
+  }
+
+  // Toggle save status and update savedNews list
+  toggleSave(id: number): Observable<boolean> {
+    const newsItem = this.fakeData.find((item) => item.id === id);
+    if (newsItem) {
+      newsItem.save = !newsItem.save; // Toggle save status
+      if (newsItem.save) {
+        this.savedNews.push(newsItem); // Add to saved list
+      } else {
+        this.savedNews = this.savedNews.filter((item) => item.id !== id); // Remove from saved list
+      }
+      return of(newsItem.save);
+    }
+    return of(false);
+  }
+
+  getFavoriteNews(): Observable<News[]> {
+    return of(this.savedNews);
   }
 }

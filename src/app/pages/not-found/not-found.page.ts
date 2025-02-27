@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
 
@@ -8,7 +7,7 @@ import { IonContent } from '@ionic/angular/standalone';
   templateUrl: './not-found.page.html',
   styleUrls: ['./not-found.page.scss'],
   standalone: true,
-  imports: [IonContent, FormsModule],
+  imports: [IonContent],
 })
 export class NotFoundPage implements OnInit {
   constructor(private router: Router) {}
