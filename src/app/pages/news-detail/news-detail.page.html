@@ -1,17 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>News Detail</ion-title>
+    <!-- <ion-title>News Detail</ion-title> -->
   </ion-toolbar>
 </ion-header>
-
 @if(news(); as news ) {
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
+    <ion-toolbar color="transparent">
       <ion-buttons slot="start">
-        <ion-button (click)="goBack()">
+        <button class="back-button" (click)="goBack()">
           <ion-icon name="arrow-back"></ion-icon>
-        </ion-button>
+        </button>
       </ion-buttons>
       <ion-title size="medium">News Detail</ion-title>
     </ion-toolbar>
@@ -29,7 +28,7 @@
     <div class="news-content">
       <p>{{ news.content }}</p>
     </div>
-    @for (image of news.images?.slice(1); track $index) {
+    @for (image of news.images.slice(1); track $index) {
     <img [src]="image" [alt]="news.title" class="news-image" />
     }
   </div>

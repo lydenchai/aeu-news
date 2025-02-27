@@ -7,7 +7,6 @@ import {
   IonTitle,
   IonToolbar,
   IonButtons,
-  IonButton,
   IonIcon,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +26,6 @@ import { News } from 'src/app/types/news';
     CommonModule,
     FormsModule,
     IonButtons,
-    IonButton,
     IonIcon,
   ],
 })
@@ -43,7 +41,7 @@ export class NewsDetailPage implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = parseInt(params['id'], 10); // Ensure id is a number
-      
+
       // Fetch news data from the data service
       if (!isNaN(id)) {
         this.dataService.getOne(id).subscribe({
