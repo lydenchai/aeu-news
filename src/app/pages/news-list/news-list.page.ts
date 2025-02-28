@@ -41,6 +41,7 @@ import { News } from 'src/app/types/news';
     IonHeader,
     IonTitle,
     IonCard, 
+    IonIcon,
     IonCardHeader, 
     IonCardTitle,
     IonCardContent, 
