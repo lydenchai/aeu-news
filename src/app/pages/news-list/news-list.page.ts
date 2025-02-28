@@ -1,16 +1,8 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import {
-  IonContent,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonButton,
-  IonIcon,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-} from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
+
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonCard, IonRow, IonCol, IonCardHeader, IonBadge, IonCardTitle, IonCardContent, IonText } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 
@@ -20,21 +12,29 @@ import { News } from 'src/app/types/news';
   styleUrls: ['./news-list.page.scss'],
   standalone: true,
   imports: [
-    IonToolbar,
-    IonHeader,
     IonContent,
+    IonToolbar,
+    FormsModule,
     IonItem,
     IonLabel,
     IonList,
-    IonButton,
-    IonIcon,
-    IonTitle,
     RouterLink,
+    IonHeader,
+    IonTitle,
+    IonCard,
+    IonRow,
+    IonCol,
+    IonCardHeader,
+    IonBadge,
+    IonCardTitle,
+    IonCardContent,
+    IonText,
   ],
 })
 export class NewsListPage implements OnInit {
   greeting: string = '';
   readonly list = signal<News[]>([]);
+  activeTab: string = 'news'; // Default active tab
 
   constructor(private dataService: DataService, private router: Router) {}
 
@@ -64,5 +64,9 @@ export class NewsListPage implements OnInit {
 
   onSearch() {
     this.router.navigate(['all-news/search']);
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 }
