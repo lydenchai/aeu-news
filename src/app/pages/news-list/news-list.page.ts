@@ -1,8 +1,21 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonCard, IonRow, IonCol, IonCardHeader, IonBadge, IonCardTitle, IonCardContent, IonText } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonButton,
+  IonIcon,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+} from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 
@@ -12,23 +25,26 @@ import { News } from 'src/app/types/news';
   styleUrls: ['./news-list.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
+    IonCardContent,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonCardHeader,
+    IonCard,
     IonToolbar,
-    FormsModule,
+    IonHeader,
+    IonContent,
+    IonToolbar, 
     IonItem,
     IonLabel,
     IonList,
     RouterLink,
     IonHeader,
     IonTitle,
-    IonCard,
-    IonRow,
-    IonCol,
-    IonCardHeader,
-    IonBadge,
+    IonCard, 
+    IonIcon,
+    IonCardHeader, 
     IonCardTitle,
-    IonCardContent,
-    IonText,
+    IonCardContent, 
   ],
 })
 export class NewsListPage implements OnInit {
@@ -55,11 +71,15 @@ export class NewsListPage implements OnInit {
     }
   }
 
-  // Fetch news data from the data service
-  fetchNews(): void {
-    this.dataService.getList().subscribe((res) => {
-      this.list.set(res);
-    });
+  async fetchNews() {
+    try {
+      const data = await this.dataService.getList().toPromise();
+      if (data) {
+        this.list.set(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   onSearch() {

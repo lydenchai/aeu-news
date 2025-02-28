@@ -76,7 +76,7 @@ export class DataService extends BaseCrudService<News> {
   }
 
   // Toggle save status and update savedNews list
-  toggleSave(id: number): Observable<boolean> {
+  saveNews(id: number): Observable<boolean> {
     const newsItem = this.fakeData.find((item) => item.id === id);
     if (newsItem) {
       newsItem.save = !newsItem.save; // Toggle save status

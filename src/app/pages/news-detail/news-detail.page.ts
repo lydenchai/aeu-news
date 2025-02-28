@@ -4,11 +4,7 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonButtons,
   IonIcon,
-  IonRow,
-  IonButton,
-  IonCol,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
@@ -19,17 +15,7 @@ import { News } from 'src/app/types/news';
   templateUrl: './news-detail.page.html',
   styleUrls: ['./news-detail.page.scss'],
   standalone: true,
-  imports: [
-    IonCol,
-    IonButton,
-    IonRow,
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonButtons,
-    IonIcon,
-  ],
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonIcon],
 })
 export class NewsDetailPage implements OnInit {
   isSaved: boolean = false;
@@ -57,7 +43,7 @@ export class NewsDetailPage implements OnInit {
   }
 
   onSave(id: number) {
-    this.dataService.toggleSave(id).subscribe((saved) => {
+    this.dataService.saveNews(id).subscribe((saved) => {
       this.isSaved = !this.isSaved;
     });
   }

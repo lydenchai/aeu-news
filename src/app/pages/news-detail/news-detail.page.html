@@ -20,15 +20,11 @@
     </ion-toolbar>
   </ion-header>
   <div class="ion-padding">
-    <!-- News Image -->
     @if (news.images) {
     <img [src]="news.images[0]" [alt]="news.title" class="news-image" />
     }
-
-    <!-- News Title -->
     <h1 class="news-title">{{ news.title }}</h1>
 
-    <!-- News Content -->
     <div class="news-content">
       <p>{{ news.content }}</p>
     </div>
@@ -37,8 +33,7 @@
     }
   </div>
 </ion-content>
-}
-@if (!news()) {
+} @else {
 <div class="ion-padding">
   <p>No news available.</p>
 </div>

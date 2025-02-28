@@ -1,60 +1,41 @@
-<ion-content class="ion-padding">
-  <div class="recommendation-section">
-    <ion-list>
-      <div class="">
-        @for (slids of list(); track slids.id){
-          <div class="slide-show">
-            <img [src]="slids.img" alt="Card Image" class="img-slide" />
-            <div class="slide-content">
-              <h3>{{ slids.title }}</h3>
-              <p>{{ slids.date }}</p>
-              <span class="news-badge">News</span>
-            </div>
-          </div>
-        }
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>News feed</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar class="ion-no-padding">
+      <div class="header ion-padding">
+        <div>
+          <h4>{{ greeting }}</h4>
+          <h6>Here's your news feed</h6>
+        </div>
+        <button class="search" (click)="onSearch()">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
       </div>
-      <div class="tabs-container">
-        <div 
-          class="tab" 
-          [class.active]="activeTab === 'news'" 
-          (click)="setActiveTab('news')">
-          News
-        </div>
-        <div 
-          class="tab" 
-          [class.active]="activeTab === 'events'" 
-          (click)="setActiveTab('events')">
-          Events
-        </div>
-      </div>
-      <!-- <div class="tabs-container">
-        <div 
-          class="tab"> 
-          News
-        </div>
-        <div 
-          class="tab">   
-          Events
-        </div>
-      </div> -->
-       <div class="card">
-        @for (news of list(); track news.id){
-          <div [routerLink]="['/news', news.id]" fill="clear">
-            <ion-row>
-              <ion-col size="5">
-                <img [src]="news.img" alt="Card Image" class="card-image w-100" />
-              </ion-col>
-              <ion-col size="7">
-                <ion-label>
-                  <h3>{{ news.category }}</h3>
-                  <p class="desc">{{ news.title }}</p>
-                  <p>{{ news.date }}</p>
-                </ion-label>
-              </ion-col>
-            </ion-row>
-          </div>
-        }
-       </div>
-    </ion-list>
+    </ion-toolbar>
+  </ion-header>
+  @if(list().length > 0){
+  <ion-list>
+    @for (news of list(); track news.id) {
+    <ion-card [routerLink]="['/news', news.id]">
+      <img [src]="news.images[0]" [alt]="news.title" class="news-image" />
+      <ion-card-header>
+        <ion-card-title>{{ news.title }}</ion-card-title>
+        <ion-card-subtitle>{{ news.date }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{ news.content }}
+      </ion-card-content>
+    </ion-card>
+    }
+  </ion-list>
+  }@else {
+  <div class="ion-padding ion-text-center">
+    <p>No news or events.</p>
   </div>
+  }
 </ion-content>

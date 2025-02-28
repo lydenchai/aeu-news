@@ -8,6 +8,10 @@ import {
   IonList,
   IonButton,
   IonTitle,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardContent,
 } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
@@ -19,6 +23,10 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./favorite.page.scss'],
   standalone: true,
   imports: [
+    IonCardContent,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardHeader,
     IonToolbar,
     IonHeader,
     IonContent,
