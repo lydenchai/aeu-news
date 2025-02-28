@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>News feed</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,19 +18,24 @@
       </div>
     </ion-toolbar>
   </ion-header>
-
-  <ion-list class="ion-padding">
+  @if(list().length > 0){
+  <ion-list>
     @for (news of list(); track news.id) {
-    <ion-item>
-      <ion-label>
-        <h4>{{ news.title }}</h4>
-        <p class="ion-text-capitalize">{{ news.category }}</p>
-        <p>{{ news.date }}</p>
-      </ion-label>
-      <ion-button [routerLink]="['/news', news.id]" fill="clear">
-        View Details
-      </ion-button>
-    </ion-item>
+    <ion-card [routerLink]="['/news', news.id]">
+      <img [src]="news.images[0]" [alt]="news.title" class="news-image" />
+      <ion-card-header>
+        <ion-card-title>{{ news.title }}</ion-card-title>
+        <ion-card-subtitle>{{ news.date }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{ news.content }}
+      </ion-card-content>
+    </ion-card>
     }
   </ion-list>
+  }@else {
+  <div class="ion-padding ion-text-center">
+    <p>No news or events.</p>
+  </div>
+  }
 </ion-content>

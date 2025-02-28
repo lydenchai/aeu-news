@@ -10,6 +10,11 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
 } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
@@ -20,6 +25,11 @@ import { News } from 'src/app/types/news';
   styleUrls: ['./news-list.page.scss'],
   standalone: true,
   imports: [
+    IonCardContent,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonCardHeader,
+    IonCard,
     IonToolbar,
     IonHeader,
     IonContent,
@@ -55,11 +65,15 @@ export class NewsListPage implements OnInit {
     }
   }
 
-  // Fetch news data from the data service
-  fetchNews(): void {
-    this.dataService.getList().subscribe((res) => {
-      this.list.set(res);
-    });
+  async fetchNews() {
+    try {
+      const data = await this.dataService.getList().toPromise();
+      if (data) {
+        this.list.set(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   onSearch() {
