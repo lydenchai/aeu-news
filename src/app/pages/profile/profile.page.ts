@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   IonAvatar,
   IonContent,
   IonHeader,
   IonIcon,
   IonItem,
-  IonItemOption,
-  IonItemOptions,
-  IonItemSliding,
   IonLabel,
   IonList,
-  IonTitle,
   IonCard,
   IonToolbar,
 } from '@ionic/angular/standalone';
@@ -27,9 +24,9 @@ import {
     IonItem,
     IonLabel,
     IonList,
-    IonTitle,
     IonToolbar,
     IonCard,
+    RouterLink,
   ],
 })
 export class ProfilePage implements OnInit {
