@@ -17,7 +17,7 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'all-news',
+        path: 'home',
         children: [
           {
             path: '',
@@ -25,11 +25,6 @@ export const routes: Routes = [
               import('./pages/news-list/news-list.page').then(
                 (m) => m.NewsListPage
               ),
-          },
-          {
-            path: 'search',
-            loadComponent: () =>
-              import('./pages/search/search.page').then((m) => m.SearchPage),
           },
         ],
       },
@@ -39,6 +34,11 @@ export const routes: Routes = [
           import('./pages/news-detail/news-detail.page').then(
             (m) => m.NewsDetailPage
           ),
+      },
+      {
+        path: 'discover',
+        loadComponent: () =>
+          import('./pages/discover/discover.page').then((m) => m.DiscoverPage),
       },
       {
         path: 'favorite',

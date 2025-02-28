@@ -1,0 +1,12 @@
+<ion-card [routerLink]="['/news', data.id]">
+  <ion-card-content class="ion-no-padding">
+    <img alt="Silhouette of mountains" [src]="data.thumbnail" width="100" />
+    <ion-card-header class="ion-no-padding">
+      <ion-card-subtitle>{{ data.date }}</ion-card-subtitle>
+      <h3 class="card-title">{{ data.title }}</h3>
+      <div class="chip ion-text-capitalize" [style.background]="'#eeeeee'">
+        {{data.category}}
+      </div>
+    </ion-card-header>
+  </ion-card-content>
+</ion-card>

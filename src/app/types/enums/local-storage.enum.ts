@@ -3,4 +3,5 @@ export enum LocalStorageEnum {
   RefreshToken = '_rt',
   ForceChangePassword = '_fcp',
   UserId = '_uid',
+  NewsId = '_news',
 }

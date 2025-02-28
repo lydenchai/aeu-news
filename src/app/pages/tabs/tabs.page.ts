@@ -43,7 +43,7 @@ export class TabsPage implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         const segments = event.url.split('/');
         const lastSegment = segments.pop();
-        this.showTabs = isNaN(Number(lastSegment)) && lastSegment !== 'search';
+        this.showTabs = isNaN(Number(lastSegment));
       }
     });
   }

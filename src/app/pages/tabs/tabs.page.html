@@ -1,10 +1,16 @@
 <ion-tabs>
   @if (showTabs) {
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="all-news" [routerLink]="['/all-news']" routerLinkActive="router-link-active"
+    <ion-tab-button tab="home" [routerLink]="['/home']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">
-      <ion-icon name="grid-outline"></ion-icon>
+      <ion-icon name="home-outline"></ion-icon>
       <ion-label>All news</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="discover" [routerLink]="['/discover']" routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <ion-icon name="compass-outline"></ion-icon>
+      <ion-label>Discover</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="favorite" [routerLink]="['/favorite']" routerLinkActive="router-link-active"

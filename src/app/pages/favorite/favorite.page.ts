@@ -1,21 +1,14 @@
 import { Component, OnInit, signal } from '@angular/core';
 import {
-  IonToolbar,
-  IonHeader,
   IonContent,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonButton,
+  IonHeader,
   IonTitle,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCardContent,
+  IonToolbar,
+  IonList,
 } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
-import { RouterLink } from '@angular/router';
+import { NewsCardComponent } from '../shares/news-card/news-card.component';
 
 @Component({
   selector: 'app-favorite',
@@ -23,19 +16,12 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./favorite.page.scss'],
   standalone: true,
   imports: [
-    IonCardContent,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardHeader,
-    IonToolbar,
-    IonHeader,
-    IonContent,
-    IonItem,
-    IonLabel,
     IonList,
-    IonButton,
+    IonContent,
+    IonHeader,
     IonTitle,
-    RouterLink,
+    IonToolbar,
+    NewsCardComponent,
   ],
 })
 export class FavoritePage implements OnInit {
@@ -48,7 +34,10 @@ export class FavoritePage implements OnInit {
     this.fetchFavoriteNews();
   }
 
-  // Fetch news data from the data service
+  ionViewWillEnter(): void {
+    this.fetchFavoriteNews();
+  }
+
   fetchFavoriteNews(): void {
     this.dataService.getFavoriteNews().subscribe((res) => {
       this.list.set(res);

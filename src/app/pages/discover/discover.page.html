@@ -1,0 +1,54 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Discover</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <div class="header ion-padding">
+    <ion-header collapse="condense">
+      <ion-toolbar class="ion-no-padding">
+        <div>
+          <h4>Discover</h4>
+          <p>All news and events from AEU</p>
+        </div>
+        <div class="search-box">
+          <ion-icon class="search" name="search-outline"></ion-icon>
+          <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="onSearchInput($event)" />
+          @if (searchTerm()) {
+          <ion-icon class="clear" name="options-outline" (click)="clearSearch()"></ion-icon>
+          }
+        </div>
+      </ion-toolbar>
+    </ion-header>
+
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-content ion-padding-horizontal">
+    <ion-chip (click)="setTab('news')" [style.background]="selectedTab() === 'news' ? '#37ce9b' : '#eeeeee'"
+      [style.color]="selectedTab() === 'news' ? '#fff' : '#888'">
+      News
+    </ion-chip>
+    <ion-chip (click)="setTab('event')" [style.background]="selectedTab() === 'event' ? '#37ce9b' : '#eeeeee'"
+      [style.color]="selectedTab() === 'event' ? '#fff' : '#888'">
+      Events
+    </ion-chip>
+  </div>
+
+  <!-- Content -->
+  <div class="list-item">
+    @if(filteredList().length > 0){
+    <ion-list>
+      @for (item of filteredList(); track item.id) {
+      <app-news-card [data]="item"></app-news-card>
+      }
+    </ion-list>
+    }
+    @else {
+    <div class="ion-padding ion-text-center">
+      <p>No {{ selectedTab() === 'news' ? 'news' : 'events' }} found.</p>
+    </div>
+    }
+  </div>
+</ion-content>

@@ -1,39 +1,72 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>News feed</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar class="ion-no-padding">
-      <div class="header ion-padding">
+      <div class="header ion-padding" lines>
         <div>
           <h4>{{ greeting }}</h4>
           <h6>Here's your news feed</h6>
         </div>
-        <button class="search" (click)="onSearch()">
+        <button class="search" (click)="toggleSearch()">
           <ion-icon name="search-outline"></ion-icon>
         </button>
       </div>
     </ion-toolbar>
   </ion-header>
-  @if(list().length > 0){
+
+  <!-- Search Box -->
+  @if (isSearchVisible) {
+  <div class="search-box animate-fade-in">
+    <ion-icon class="search" name="search-outline"></ion-icon>
+    <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="onSearchInput($event)" />
+    @if (searchTerm()) {
+    <ion-icon class="clear" name="options-outline" (click)="clearSearch()"></ion-icon>
+    }
+  </div>
+  }
+  <h5 class="ion-padding-start ion-margin-bottom">University Highlights</h5>
+  <!-- Slide Show -->
+  <div class="slide-show-container">
+    <div class="slide-show" #slideShow>
+      @for (news of list(); track news.id; let i = $index) {
+      <div class="news-slide">
+        <ion-card class="news-card" [style.background-image]="'url(' + news.thumbnail + ')'"
+          [style.margin-left]="'16px'" [style.margin-right]="(i === list().length - 1) ? '16px' : '0'"
+          [routerLink]="['/news', news.id]">
+          <ion-chip class="ion-text-capitalize ion-margin">{{ news.category }}</ion-chip>
+          <div class="news-content">
+            <h2 class="news-title">{{ news.title }}</h2>
+          </div>
+        </ion-card>
+      </div>
+      }
+    </div>
+    <div class="index-indicator">
+      @for (news of list(); track news.id; let i = $index) {
+      <span [class.active]="currentIndex === i" (click)="goToSlide(i)"></span>
+      }
+    </div>
+  </div>
+
+  <!-- News List -->
+  <h5 class="ion-padding-start" style="margin-bottom: 0;">
+    {{ isSearchVisible ? "All news and events" : "Recommended"}}
+  </h5>
+  @if(filteredList().length > 0){
   <ion-list>
-    @for (news of list(); track news.id) {
-    <ion-card [routerLink]="['/news', news.id]">
-      <img [src]="news.images[0]" [alt]="news.title" class="news-image" />
-      <ion-card-header>
-        <ion-card-title>{{ news.title }}</ion-card-title>
-        <ion-card-subtitle>{{ news.date }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        {{ news.content }}
-      </ion-card-content>
-    </ion-card>
+    @for (news of filteredList(); track news.id) {
+    <app-news-card [data]="news"></app-news-card>
     }
   </ion-list>
-  }@else {
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  } @else {
   <div class="ion-padding ion-text-center">
     <p>No news or events.</p>
   </div>

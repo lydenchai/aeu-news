@@ -1,42 +1,22 @@
 import { Component, OnInit, signal } from '@angular/core';
 import {
   IonContent,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
   IonIcon,
-  IonTitle,
   IonList,
-  IonItem,
-  IonButton,
-  IonChip,
-  IonLabel,
-} from '@ionic/angular/standalone';
-import { Router, RouterLink } from '@angular/router';
+  IonChip, IonToolbar, IonHeader, IonTitle } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
+import { NewsCardComponent } from '../shares/news-card/news-card.component';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.page.html',
-  styleUrls: ['./search.page.scss'],
+  selector: 'app-discover',
+  templateUrl: './discover.page.html',
+  styleUrls: ['./discover.page.scss'],
   standalone: true,
-  imports: [
-    IonLabel,
-    IonChip,
-    IonButton,
-    IonButtons,
-    IonTitle,
-    IonIcon,
-    IonContent,
-    IonHeader,
-    IonToolbar,
-    IonList,
-    IonItem,
-    RouterLink,
-  ],
+  imports: [IonTitle, IonHeader, IonToolbar, IonChip, IonIcon, IonContent, IonList, NewsCardComponent],
 })
-export class SearchPage implements OnInit {
+export class DiscoverPage implements OnInit {
   selectedTab = signal<string>('news');
   searchTerm = signal<string>('');
   readonly list = signal<News[]>([]);
@@ -66,6 +46,11 @@ export class SearchPage implements OnInit {
     this.filterList();
   }
 
+  clearSearch() {
+    this.searchTerm.set('');
+    this.filterList();
+  }
+
   filterList(): void {
     const search = this.searchTerm().toLowerCase();
     const tab = this.selectedTab();
@@ -78,6 +63,6 @@ export class SearchPage implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/all-news']);
+    this.router.navigate(['/home']);
   }
 }
