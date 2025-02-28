@@ -16,6 +16,7 @@ export class DataService extends BaseCrudService<News> {
       description: 'Explore the top tourist attractions around the world.',
       content: 'ព្រឹកថ្ងៃព្រហស្បតិ៍ ៣រោច ខែបុស្ស ឆ្នាំរោង ឆស័ក ព.ស.២៥៦៨...',
       date: 'October 5, 2023',
+      img:'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-54_1737168427.jpg',
       save: false,
       images: [
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-56_1737168404.jpg',
@@ -32,6 +33,7 @@ export class DataService extends BaseCrudService<News> {
       description: 'Discover the finest dining experiences in Paris.',
       content: 'Duis aute irure dolor in reprehenderit in voluptate...',
       date: 'October 6, 2023',
+      img:'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-54_1737168427.jpg',
       save: false,
       images: [
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-56_1737168404.jpg',
@@ -48,6 +50,7 @@ export class DataService extends BaseCrudService<News> {
       description: 'Discover the finest dining experiences in Paris.',
       content: 'Duis aute irure dolor in reprehenderit in voluptate...',
       date: 'October 6, 2023',
+      img:'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-54_1737168427.jpg',
       save: false,
       images: [
         'https://www.aeu.edu.kh/pages/photo_2025-01-16_14-27-56_1737168404.jpg',
