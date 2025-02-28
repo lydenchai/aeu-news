@@ -7,5 +7,6 @@ export interface News extends MongoObject {
   content?: string;
   date?: string;
   images: string[];
+  img: string;
   save?: boolean;
 }

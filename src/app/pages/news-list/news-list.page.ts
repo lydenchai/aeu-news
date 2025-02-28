@@ -33,18 +33,23 @@ import { News } from 'src/app/types/news';
     IonToolbar,
     IonHeader,
     IonContent,
+    IonToolbar, 
     IonItem,
     IonLabel,
     IonList,
-    IonButton,
-    IonIcon,
-    IonTitle,
     RouterLink,
+    IonHeader,
+    IonTitle,
+    IonCard, 
+    IonCardHeader, 
+    IonCardTitle,
+    IonCardContent, 
   ],
 })
 export class NewsListPage implements OnInit {
   greeting: string = '';
   readonly list = signal<News[]>([]);
+  activeTab: string = 'news'; // Default active tab
 
   constructor(private dataService: DataService, private router: Router) {}
 
@@ -78,5 +83,9 @@ export class NewsListPage implements OnInit {
 
   onSearch() {
     this.router.navigate(['all-news/search']);
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 }
