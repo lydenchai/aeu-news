@@ -1,3 +1,26 @@
+ion-header {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+ion-item {
+  --padding-start: 0;
+}
+
+ion-label h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+ion-label p {
+  font-size: 14px;
+  color: #666;
+}
+
+ion-infinite-scroll {
+  height: 50px;
+}
+
 .aeu-logo {
   width: 50px;
   height: 50px;
@@ -16,21 +39,6 @@
   font-size: 20px;
   font-weight: bold;
   color: #333;
-}
-
-ion-item {
-  --padding-start: 0;
-}
-
-ion-label h3 {
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
-}
-
-ion-label p {
-  font-size: 14px;
-  color: #666;
 }
 
 hr {
@@ -81,6 +89,7 @@ hr {
 // Search ----------------------------------------------------------------
 .search-box {
   position: relative;
+  margin-top: 16px;
   margin: 0 16px;
   transition: all 0.3s ease-in-out;
 }
@@ -148,20 +157,22 @@ hr {
 
 ion-chip {
   margin: 10px;
-  --background: #37ce9b;
-  color: #fff;
+  color: #ffffff;
+  --background: #16c769;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.198);
 }
 
 .news-content {
   width: 100%;
   position: absolute;
   bottom: 0;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.87));
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.88));
   padding: 10px;
 }
 
 .news-title {
   font-size: 14px;
+  line-height: 20px;
   margin: 0;
 }
 
@@ -182,5 +193,5 @@ ion-chip {
 }
 
 .index-indicator span.active {
-  background-color: #37ce9b;
+  background-color: #16c769;
 }

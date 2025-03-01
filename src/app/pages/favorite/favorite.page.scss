@@ -9,3 +9,17 @@ p {
   font-size: 14px;
   color: #666;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clear {
+  color: red;
+}
+
+ion-infinite-scroll {
+  height: 50px;
+}

@@ -6,11 +6,14 @@ import {
   IonChip,
   IonToolbar,
   IonHeader,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 import { NewsCardComponent } from '../shares/news-card/news-card.component';
+import { InfiniteScrollCustomEvent } from '@ionic/core';
 
 @Component({
   selector: 'app-discover',
@@ -18,6 +21,8 @@ import { NewsCardComponent } from '../shares/news-card/news-card.component';
   styleUrls: ['./discover.page.scss'],
   standalone: true,
   imports: [
+    IonInfiniteScrollContent,
+    IonInfiniteScroll,
     IonHeader,
     IonToolbar,
     IonChip,
@@ -37,6 +42,11 @@ export class DiscoverPage implements OnInit {
 
   ngOnInit(): void {
     this.fetchNews();
+  }
+
+  onIonInfinite(event: InfiniteScrollCustomEvent) {
+    this.fetchNews();
+    setTimeout(() => event.target.complete(), 500);
   }
 
   setTab(tab: string) {

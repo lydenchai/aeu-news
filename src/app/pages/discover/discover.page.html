@@ -21,16 +21,15 @@
         </div>
       </ion-toolbar>
     </ion-header>
-
   </div>
 
   <!-- Tabs -->
   <div class="tabs-content ion-padding-horizontal">
-    <ion-chip (click)="setTab('news')" [style.background]="selectedTab() === 'news' ? '#37ce9b' : '#eeeeee'"
+    <ion-chip (click)="setTab('news')" [style.background]="selectedTab() === 'news' ? '#16c769' : '#eeeeee'"
       [style.color]="selectedTab() === 'news' ? '#fff' : '#888'">
       News
     </ion-chip>
-    <ion-chip (click)="setTab('event')" [style.background]="selectedTab() === 'event' ? '#37ce9b' : '#eeeeee'"
+    <ion-chip (click)="setTab('event')" [style.background]="selectedTab() === 'event' ? '#16c769' : '#eeeeee'"
       [style.color]="selectedTab() === 'event' ? '#fff' : '#888'">
       Events
     </ion-chip>
@@ -44,9 +43,12 @@
       <app-news-card [data]="item"></app-news-card>
       }
     </ion-list>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
     }
     @else {
-    <div class="ion-padding ion-text-center">
+    <div class="no-data ion-padding ion-text-center">
       <p>No {{ selectedTab() === 'news' ? 'news' : 'events' }} found.</p>
     </div>
     }
