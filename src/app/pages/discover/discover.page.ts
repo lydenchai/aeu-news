@@ -75,15 +75,10 @@ export class DiscoverPage implements OnInit {
   filterList(): void {
     const search = this.searchTerm().toLowerCase();
     const tab = this.selectedTab();
-
     this.filteredList.set(
       this.list()
         .filter((item) => item.category === tab) // Ensure case match
         .filter((item) => item.title.toLowerCase().includes(search)) // Search filter
     );
-  }
-
-  onBack() {
-    this.router.navigate(['/home']);
   }
 }
