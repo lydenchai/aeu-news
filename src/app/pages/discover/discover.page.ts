@@ -3,7 +3,10 @@ import {
   IonContent,
   IonIcon,
   IonList,
-  IonChip, IonToolbar, IonHeader, IonTitle } from '@ionic/angular/standalone';
+  IonChip,
+  IonToolbar,
+  IonHeader,
+} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
@@ -14,7 +17,15 @@ import { NewsCardComponent } from '../shares/news-card/news-card.component';
   templateUrl: './discover.page.html',
   styleUrls: ['./discover.page.scss'],
   standalone: true,
-  imports: [IonTitle, IonHeader, IonToolbar, IonChip, IonIcon, IonContent, IonList, NewsCardComponent],
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonChip,
+    IonIcon,
+    IonContent,
+    IonList,
+    NewsCardComponent,
+  ],
 })
 export class DiscoverPage implements OnInit {
   selectedTab = signal<string>('news');

@@ -1,3 +1,10 @@
+.aeu-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 5px;
+}
+
 .breaking-news h1 {
   font-size: 24px;
   font-weight: bold;
@@ -39,7 +46,11 @@ hr {
   align-items: center;
   justify-content: space-between;
 
-  h4 {
+  .left {
+    display: flex;
+  }
+
+  h5 {
     margin: 0;
     font-size: 24px;
     font-weight: bold;

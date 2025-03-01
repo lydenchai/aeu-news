@@ -7,12 +7,15 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar class="ion-no-padding">
-      <div class="header ion-padding" lines>
-        <div>
-          <h4>{{ greeting }}</h4>
-          <h6>Here's your news feed</h6>
+      <div class="header ion-padding">
+        <div class="left">
+          <img class="aeu-logo" src="../../../assets/images/aeu-logo.png" alt="AEU Logo">
+          <div>
+            <h5>{{ greeting }}</h5>
+            <h6>Here's your news feed</h6>
+          </div>
         </div>
-        <button class="search" (click)="toggleSearch()">
+        <button slot="end" class="search" (click)="toggleSearch()">
           <ion-icon name="search-outline"></ion-icon>
         </button>
       </div>
@@ -29,7 +32,7 @@
     }
   </div>
   }
-  <h5 class="ion-padding-start ion-margin-bottom">University Highlights</h5>
+  <h6 class="ion-padding-start ion-margin-bottom">University Highlights</h6>
   <!-- Slide Show -->
   <div class="slide-show-container">
     <div class="slide-show" #slideShow>
@@ -54,9 +57,9 @@
   </div>
 
   <!-- News List -->
-  <h5 class="ion-padding-start" style="margin-bottom: 0;">
+  <h6 class="ion-padding-start" style="margin-bottom: 0;">
     {{ isSearchVisible ? "All news and events" : "Recommended"}}
-  </h5>
+  </h6>
   @if(filteredList().length > 0){
   <ion-list>
     @for (news of filteredList(); track news.id) {
