@@ -57,3 +57,12 @@ h4 {
   height: auto;
   margin: 200px auto;
 }
+
+.divider {
+  width: 100%;
+  border: 0.1px solid #eee;
+}
+
+ion-infinite-scroll-content {
+  --color: #666;
+}
