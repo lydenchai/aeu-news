@@ -9,7 +9,6 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 import { NewsCardComponent } from '../shares/news-card/news-card.component';
@@ -38,7 +37,7 @@ export class DiscoverPage implements OnInit {
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.fetchNews();

@@ -4,7 +4,7 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonIcon, 
+  IonIcon,
   IonChip,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';

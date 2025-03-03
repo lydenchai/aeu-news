@@ -1,8 +1,3 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>News feed</ion-title>
-  </ion-toolbar>
-</ion-header> -->
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar class="ion-no-padding">
@@ -20,8 +15,6 @@
       </div>
     </ion-toolbar>
   </ion-header>
-
-  <!-- Search Box -->
   @if (isSearchVisible) {
   <br>
   <div class="search-box">
@@ -33,7 +26,6 @@
   </div>
   } @else {
   <h6 class="ion-padding-start ion-margin-bottom">University Highlights</h6>
-  <!-- Slide Show -->
   <div class="slide-show-container">
     <div class="slide-show" #slideShow>
       @for (news of list(); track news.id; let i = $index) {

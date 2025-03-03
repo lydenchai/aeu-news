@@ -6,19 +6,16 @@
       <ion-icon [name]="isActive('/home') ? 'home' : 'home-outline'"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
-
     <ion-tab-button tab="discover" [routerLink]="['/discover']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">
       <ion-icon [name]="isActive('/discover') ? 'compass' : 'compass-outline'"></ion-icon>
       <ion-label>Discover</ion-label>
     </ion-tab-button>
-
     <ion-tab-button tab="favorite" [routerLink]="['/favorite']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">
       <ion-icon [name]="isActive('/favorite') ? 'bookmark' : 'bookmark-outline'"></ion-icon>
       <ion-label>Favorite</ion-label>
     </ion-tab-button>
-
     <ion-tab-button tab="profile" [routerLink]="['/profile']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">
       <ion-icon [name]="isActive('/profile') ? 'person' : 'person-outline'"></ion-icon>

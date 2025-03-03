@@ -27,6 +27,7 @@ export class HttpClientService {
     private http: HttpClient,
     private loadingService: LoadingService
   ) {}
+
   getUrl(path: string, queryParams?: { [key: string]: any }) {
     let arr = path.split('/').filter((v) => v);
     arr.unshift(environment.apiBaseUrl);
@@ -42,6 +43,7 @@ export class HttpClientService {
 
     return urlPath;
   }
+
   get<T>(path: string, request: RequestParam = {}) {
     const url = this.getUrl(path);
     this.clean(request.data, true);

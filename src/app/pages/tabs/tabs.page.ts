@@ -36,7 +36,7 @@ import { Tab } from 'src/app/types/tab';
 export class TabsPage implements OnInit, OnDestroy {
   showTabs: boolean = true;
   private unsubscribe$ = new Subject<void>();
-  readonly list = signal<Tab[]>([
+  readonly tabs = signal<Tab[]>([
     {
       route: '/home',
       label: 'All news',
