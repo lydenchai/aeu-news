@@ -5,6 +5,7 @@ import {
   IonTitle,
   IonToolbar,
   IonIcon,
+  IonChip,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
@@ -17,7 +18,7 @@ import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
   templateUrl: './news-detail.page.html',
   styleUrls: ['./news-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonIcon],
+  imports: [IonChip, IonContent, IonHeader, IonTitle, IonToolbar, IonIcon],
 })
 export class NewsDetailPage implements OnInit {
   isSaved: boolean = false;

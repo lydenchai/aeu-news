@@ -1,11 +1,12 @@
 <ion-content [fullscreen]="true">
-  <div class="login-container">
-    <div class="login-content">
+  <div class="onboarding-container">
+    <div class="onboarding-content">
       <img src="https://asset.aeu.cloud/images/unnamed.png" alt="AEU News Logo">
-      <div class="title">
-        Welcome to AEU News
-      </div>
+      <h1 class="title">Welcome to AEU News</h1>
+      <p class="subtitle">Stay updated with the latest news and events from AEU</p>
     </div>
-    <button (click)="goToHome()">Let's Go</button>
+    <button (click)="goToHome()" class="ion-margin-top">Get Started</button>
+    <div class=" sign-up">Doesn't have an account? <span color="primary">Sign Up</span>
+    </div>
   </div>
 </ion-content>

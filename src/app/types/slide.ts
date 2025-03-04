@@ -1,9 +1,7 @@
 import { MongoObject } from './mongo-object';
 
-export interface Slids extends MongoObject {
+export interface Slide extends MongoObject {
   title?: string;
   img?: string;
   date?: string;
-
-  
 }

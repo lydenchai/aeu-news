@@ -1,0 +1,25 @@
+h4 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clear {
+  color: red;
+}
+
+ion-infinite-scroll {
+  height: 50px;
+}

@@ -3,18 +3,33 @@ import {
   IonContent,
   IonIcon,
   IonList,
-  IonChip, IonToolbar, IonHeader, IonTitle } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+  IonChip,
+  IonToolbar,
+  IonHeader,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+} from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 import { NewsCardComponent } from '../shares/news-card/news-card.component';
+import { InfiniteScrollCustomEvent } from '@ionic/core';
 
 @Component({
   selector: 'app-discover',
   templateUrl: './discover.page.html',
   styleUrls: ['./discover.page.scss'],
   standalone: true,
-  imports: [IonTitle, IonHeader, IonToolbar, IonChip, IonIcon, IonContent, IonList, NewsCardComponent],
+  imports: [
+    IonInfiniteScrollContent,
+    IonInfiniteScroll,
+    IonHeader,
+    IonToolbar,
+    IonChip,
+    IonIcon,
+    IonContent,
+    IonList,
+    NewsCardComponent,
+  ],
 })
 export class DiscoverPage implements OnInit {
   selectedTab = signal<string>('news');
@@ -22,10 +37,15 @@ export class DiscoverPage implements OnInit {
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.fetchNews();
+  }
+
+  onIonInfinite(event: InfiniteScrollCustomEvent) {
+    this.fetchNews();
+    setTimeout(() => event.target.complete(), 500);
   }
 
   setTab(tab: string) {
@@ -54,15 +74,10 @@ export class DiscoverPage implements OnInit {
   filterList(): void {
     const search = this.searchTerm().toLowerCase();
     const tab = this.selectedTab();
-
     this.filteredList.set(
       this.list()
         .filter((item) => item.category === tab) // Ensure case match
         .filter((item) => item.title.toLowerCase().includes(search)) // Search filter
     );
-  }
-
-  onBack() {
-    this.router.navigate(['/home']);
   }
 }

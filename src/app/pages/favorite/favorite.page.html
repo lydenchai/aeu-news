@@ -1,15 +1,15 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Favorite</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar class="ion-no-padding">
-      <h4 class="ion-padding">
-        Favorite
-      </h4>
+      <div class="header ion-padding">
+        <div class="">
+          <h4>Favorite</h4>
+          <p>Your saved news and events</p>
+        </div>
+        @if(list().length >=1 ){
+        <div class="clear" (click)="clearAllSavedNews()">Clear All</div>
+        }
+      </div>
     </ion-toolbar>
   </ion-header>
   @if(list().length > 0){
@@ -18,8 +18,11 @@
     <app-news-card [data]="news"></app-news-card>
     }
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
   }@else {
-  <div class="ion-padding ion-text-center">
+  <div class="no-data ion-padding ion-text-center">
     <p>No news or events.</p>
   </div>
   }

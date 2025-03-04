@@ -1,36 +1,106 @@
-.login-container {
+.onboarding-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 50px 20px;
+  background: url("https://asset.aeu.cloud/images/wave.png") center/cover
+    no-repeat;
+  position: relative;
+}
+
+/* Gradient overlay for better readability */
+.onboarding-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.845), transparent);
+  z-index: 1;
+}
+
+.onboarding-content {
+  margin-top: 90px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+img {
+  width: 120px;
+  height: auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-top: 20px;
+  animation: slideUp 1s ease-in-out;
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 25px;
+  color: rgba(255, 255, 255, 0.844);
+  max-width: 80%;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+button {
+  width: 250px;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  color: #16c769;
+  background: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s;
+  position: relative;
+  z-index: 2;
+}
+
+.sign-up {
+  z-index: 2;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.844);
 
-  .login-content {
-    display: grid;
-    place-items: center;
-    margin: 200px 0 0 0;
+  span {
+    margin-left: 5px;
+    color: #16c769;
   }
+}
 
-  img {
-    width: 100px;
-    height: auto;
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-
-  .title {
-    font-size: larger;
-    font-weight: 700;
-    margin: 20px auto;
-    color: #333333;
+  to {
+    opacity: 1;
   }
+}
 
-  button {
-    width: 230px;
-    font-size: 16px;
-    margin-top: 50px;
-    padding: 16px 24px;
-    border-radius: 25px;
-    background: #fff;
-    background-color: #37ce9b;
-    font-weight: 600;
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

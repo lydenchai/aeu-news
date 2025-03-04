@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   IonTabs,
   IonTabButton,
@@ -13,6 +13,7 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { Tab } from 'src/app/types/tab';
 
 @Component({
   selector: 'app-tabs',
@@ -35,6 +36,32 @@ import { Subject, takeUntil } from 'rxjs';
 export class TabsPage implements OnInit, OnDestroy {
   showTabs: boolean = true;
   private unsubscribe$ = new Subject<void>();
+  readonly tabs = signal<Tab[]>([
+    {
+      route: '/home',
+      label: 'All news',
+      activeIcon: 'home',
+      inactiveIcon: 'home-outline',
+    },
+    {
+      route: '/discover',
+      label: 'Discover',
+      activeIcon: 'compass',
+      inactiveIcon: 'compass-outline',
+    },
+    {
+      route: '/favorite',
+      label: 'Favorite',
+      activeIcon: 'bookmark',
+      inactiveIcon: 'bookmark-outline',
+    },
+    {
+      route: '/profile',
+      label: 'Profile',
+      activeIcon: 'person',
+      inactiveIcon: 'person-outline',
+    },
+  ]);
 
   constructor(private router: Router) {}
 
@@ -46,6 +73,10 @@ export class TabsPage implements OnInit, OnDestroy {
         this.showTabs = isNaN(Number(lastSegment));
       }
     });
+  }
+
+  isActive(url: string): boolean {
+    return this.router.url === url;
   }
 
   ngOnDestroy() {

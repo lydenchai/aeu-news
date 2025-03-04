@@ -1,17 +1,12 @@
 @if(news(); as news ) {
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>{{ news.category === "news" ? "News" : "Event"}} Detail</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding-top">
   <ion-header collapse="condense">
     <ion-toolbar color="transparent">
       <div class="top-content">
         <button class="back-button" (click)="onBack()">
           <ion-icon name="arrow-back"></ion-icon>
         </button>
-        <ion-title size="medium">{{ news.category === "news" ? "News" : "Event"}} Detail</ion-title>
+        <ion-title size="medium">{{ news.category === "news" ? "News" : "Event"}} Details</ion-title>
         <button class="save-button" (click)="onSave(news.id)">
           <ion-icon [name]="isSaved ? 'bookmark' : 'bookmark-outline'" [color]="isSaved ? 'warning' : ''">
           </ion-icon>
@@ -21,19 +16,26 @@
   </ion-header>
   <div class="ion-padding">
     @if (news.images) {
-    <img [src]="news.images[0]" [alt]="news.title" class="news-image" />
+    <img [src]="news.thumbnail" [alt]="news.title" class="news-image" />
     }
-    <h1 class="news-title">{{ news.title }}</h1>
+    <div class="chip-date">
+      <ion-chip class="ion-text-capitalize">{{ news.category }}</ion-chip>
+      <div class="date news-content"> <ion-icon name="calendar-clear-outline"></ion-icon>
+        <p>{{news.date}}</p>
+      </div>
+    </div>
+    <h3 class="news-title ion-no-margin">{{ news.title }}</h3>
+    <div class="divider"></div>
     <div class="news-content">
       <p>{{ news.content }}</p>
     </div>
     @for (image of news.images.slice(1); track $index) {
-    <img [src]="image" [alt]="news.title" class="news-image" />
+    <img [src]="image" [alt]="news.title" class="news-image ion-margin-bottom" />
     }
   </div>
 </ion-content>
 } @else {
-<div class="ion-padding">
+<div class="no-data ion-padding">
   <p>No news available.</p>
 </div>
 }

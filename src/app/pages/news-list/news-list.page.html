@@ -1,36 +1,31 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>News feed</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar class="ion-no-padding">
-      <div class="header ion-padding" lines>
-        <div>
-          <h4>{{ greeting }}</h4>
-          <h6>Here's your news feed</h6>
+      <div class="header ion-padding">
+        <div class="left">
+          <img class="aeu-logo" src="../../../assets/images/aeu-logo.png" alt="AEU Logo">
+          <div>
+            <h5>{{ greeting }}</h5>
+            <h6>Here's your news feed</h6>
+          </div>
         </div>
-        <button class="search" (click)="toggleSearch()">
+        <button slot="end" class="search" (click)="toggleSearch()">
           <ion-icon name="search-outline"></ion-icon>
         </button>
       </div>
     </ion-toolbar>
   </ion-header>
-
-  <!-- Search Box -->
   @if (isSearchVisible) {
-  <div class="search-box animate-fade-in">
+  <br>
+  <div class="search-box">
     <ion-icon class="search" name="search-outline"></ion-icon>
     <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="onSearchInput($event)" />
     @if (searchTerm()) {
     <ion-icon class="clear" name="options-outline" (click)="clearSearch()"></ion-icon>
     }
   </div>
-  }
-  <h5 class="ion-padding-start ion-margin-bottom">University Highlights</h5>
-  <!-- Slide Show -->
+  } @else {
+  <h6 class="ion-padding-start ion-margin-bottom">University Highlights</h6>
   <div class="slide-show-container">
     <div class="slide-show" #slideShow>
       @for (news of list(); track news.id; let i = $index) {
@@ -52,12 +47,9 @@
       }
     </div>
   </div>
-
-  <!-- News List -->
-  <h5 class="ion-padding-start" style="margin-bottom: 0;">
-    {{ isSearchVisible ? "All news and events" : "Recommended"}}
-  </h5>
-  @if(filteredList().length > 0){
+  }
+  <h6 class="ion-padding-start">{{ isSearchVisible ? "All news and events" : "Recommended" }}</h6>
+  @if (filteredList().length > 0) {
   <ion-list>
     @for (news of filteredList(); track news.id) {
     <app-news-card [data]="news"></app-news-card>
@@ -67,8 +59,8 @@
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
   } @else {
-  <div class="ion-padding ion-text-center">
-    <p>No news or events.</p>
+  <div class="no-data ion-padding ion-text-center">
+    <p>No news or events fount.</p>
   </div>
   }
 </ion-content>

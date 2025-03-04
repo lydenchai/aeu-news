@@ -74,11 +74,15 @@
 }
 
 ::ng-deep ion-chip.active {
-  background: #37ce9b !important;
+  background: #16c769 !important;
   color: #fff !important;
 }
 
 ::ng-deep ion-chip.inactive {
   background: #eeeeee !important;
   color: #888 !important;
+}
+
+ion-infinite-scroll {
+  height: 50px;
 }

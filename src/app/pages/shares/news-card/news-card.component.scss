@@ -1,5 +1,5 @@
 ion-card {
-  margin: 14px 16px;
+  margin: 16px;
 }
 
 ion-card-content {
@@ -28,6 +28,7 @@ ion-card-subtitle {
   text-overflow: ellipsis;
   white-space: normal;
   margin-top: 5px;
+  line-height: 20px;
   color: black;
 }
 

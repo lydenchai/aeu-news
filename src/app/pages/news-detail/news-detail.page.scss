@@ -2,11 +2,10 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
-  margin-bottom: 16px;
 }
 
 .news-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 16px;
   color: #333;
@@ -39,6 +38,7 @@ button {
 .back-button {
   margin-left: 16px;
 }
+
 .save-button {
   margin-right: 10px;
 }
@@ -47,4 +47,25 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.chip-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ion-chip {
+    background: #16c769;
+    color: #fff;
+  }
+
+  .date {
+    display: flex;
+    align-items: center;
+
+    ion-icon {
+      margin: 0 5px 0 0;
+      font-size: 20px;
+    }
+  }
 }
