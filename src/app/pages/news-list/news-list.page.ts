@@ -6,7 +6,7 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import {
   IonContent,
   IonList,
@@ -51,7 +51,7 @@ export class NewsListPage implements OnInit, OnDestroy {
   isSearchVisible: boolean = false;
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.setGreeting();
@@ -69,7 +69,7 @@ export class NewsListPage implements OnInit, OnDestroy {
     }
   }
 
-  private async fetchNews() {
+  async fetchNews() {
     try {
       const data = await this.dataService.getList().toPromise();
       if (data && Array.isArray(data)) {
@@ -84,11 +84,15 @@ export class NewsListPage implements OnInit, OnDestroy {
     }
   }
 
-  onIonInfinite(event: InfiniteScrollCustomEvent) {
-    this.fetchNews();
-    setTimeout(() => {
-      event.target.complete();
-    }, 500);
+  filterList(): void {
+    const search = this.searchTerm().toLowerCase().trim(); // Trim spaces
+    if (!search) {
+      this.filteredList.set(this.list()); // Show full list when search is empty
+      return;
+    }
+    this.filteredList.set(
+      this.list().filter((item) => item.title.toLowerCase().includes(search))
+    );
   }
 
   toggleSearch() {
@@ -103,20 +107,16 @@ export class NewsListPage implements OnInit, OnDestroy {
     this.filterList();
   }
 
-  filterList(): void {
-    const search = this.searchTerm().toLowerCase().trim(); // Trim spaces
-    if (!search) {
-      this.filteredList.set(this.list()); // Show full list when search is empty
-      return;
-    }
-    this.filteredList.set(
-      this.list().filter((item) => item.title.toLowerCase().includes(search))
-    );
-  }
-
   clearSearch() {
     this.searchTerm.set('');
     this.filteredList.set(this.list()); // Reset to full list
+  }
+
+  onIonInfinite(event: InfiniteScrollCustomEvent) {
+    this.fetchNews();
+    setTimeout(() => {
+      event.target.complete();
+    }, 500);
   }
 
   private startAutoScroll() {
