@@ -1,3 +1,6 @@
+ion-content {
+  --overflow: hidden;
+}
 .onboarding-container {
   width: 100%;
   height: 100vh;
@@ -12,7 +15,6 @@
   position: relative;
 }
 
-/* Gradient overlay for better readability */
 .onboarding-container::before {
   content: "";
   position: absolute;
@@ -25,13 +27,13 @@
 }
 
 .onboarding-content {
-  margin-top: 90px;
   position: relative;
   z-index: 2;
+  gap: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  margin-top: 90px;
 }
 
 img {
@@ -63,10 +65,8 @@ button {
   border-radius: 25px;
   color: #16c769;
   background: white;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out, transform 0.2s;
   position: relative;
   z-index: 2;
 }

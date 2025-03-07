@@ -3,10 +3,10 @@ import {
   OnInit,
   OnDestroy,
   AfterViewInit,
-  signal,
   ElementRef,
   ViewChild,
   Renderer2,
+  signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
@@ -49,7 +49,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   slideShow!: ElementRef<HTMLElement>;
 
   currentIndex = 0;
-  interval: any;
+  private intervalId: any;
   greeting: string = '';
   searchTerm = signal<string>('');
   isSearchVisible = false;
@@ -64,13 +64,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // Ensure slideshow is available before starting auto-scroll
-    setTimeout(() => {
-      if (this.slideShow && this.list().length > 1) {
-        this.startAutoScroll();
-        this.trackScroll();
-      }
-    }, 500);
+    setTimeout(() => this.initializeAutoScroll(), 500);
   }
 
   private setGreeting(): void {
@@ -86,25 +80,25 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   async fetchNews() {
     try {
       const data = await this.dataService.getList().toPromise();
-      if (data && Array.isArray(data)) {
+      if (Array.isArray(data)) {
         this.list.set(data);
         this.filteredList.set(data);
-
-        // Start auto-scroll only when data is available
-        setTimeout(() => {
-          if (this.slideShow && this.list().length > 1) {
-            this.startAutoScroll();
-            this.trackScroll();
-          }
-        }, 500);
+        this.initializeAutoScroll();
       }
     } catch (error) {
       console.error('Error fetching news:', error);
     }
   }
 
+  private initializeAutoScroll() {
+    if (this.slideShow && this.list().length > 1) {
+      this.startAutoScroll();
+      this.trackScroll();
+    }
+  }
+
   filterList(): void {
-    const search = this.searchTerm();
+    const search = this.searchTerm().trim().toLowerCase();
     this.filteredList.set(
       search
         ? this.list().filter((item) =>
@@ -114,57 +108,53 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  toggleSearch() {
+  toggleSearch(): void {
     this.isSearchVisible = !this.isSearchVisible;
+    this.clearSearch();
+  }
+
+  clearSearch(): void {
     this.searchTerm.set('');
     this.filteredList.set(this.list());
   }
 
   onSearchInput(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.searchTerm.set(inputElement.value.trim().toLowerCase());
+    this.searchTerm.set(
+      (event.target as HTMLInputElement).value.trim().toLowerCase()
+    );
     this.filterList();
   }
 
-  clearSearch() {
-    this.searchTerm.set('');
-    this.filteredList.set(this.list());
-  }
-
-  onIonInfinite(event: InfiniteScrollCustomEvent) {
+  onIonInfinite(event: InfiniteScrollCustomEvent): void {
     this.fetchNews();
-    setTimeout(() => {
-      event.target.complete();
-    }, 500);
+    setTimeout(() => event.target.complete(), 500);
   }
 
-  private startAutoScroll() {
+  private startAutoScroll(): void {
     this.stopAutoScroll();
-    this.interval = setInterval(() => this.nextSlide(), 5000);
+    this.intervalId = setInterval(() => this.nextSlide(), 5000);
   }
 
-  private stopAutoScroll() {
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
-    }
+  private stopAutoScroll(): void {
+    clearInterval(this.intervalId);
+    this.intervalId = null;
   }
 
-  private nextSlide() {
+  private nextSlide(): void {
     if (this.list().length > 0) {
       this.currentIndex = (this.currentIndex + 1) % this.list().length;
       this.scrollToSlide(this.currentIndex);
     }
   }
 
-  goToSlide(index: number) {
+  goToSlide(index: number): void {
     if (index >= 0 && index < this.list().length) {
       this.currentIndex = index;
       this.scrollToSlide(index);
     }
   }
 
-  private scrollToSlide(index: number) {
+  private scrollToSlide(index: number): void {
     if (!this.isSearchVisible && this.slideShow?.nativeElement) {
       const slideWidth = this.slideShow.nativeElement.clientWidth;
       this.slideShow.nativeElement.scrollTo({
@@ -174,33 +164,32 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private trackScroll() {
+  private trackScroll(): void {
     if (!this.slideShow?.nativeElement) return;
 
     this.renderer.listen(this.slideShow.nativeElement, 'scroll', () => {
-      const slideShowEl = this.slideShow.nativeElement;
-      const slides = slideShowEl.children;
-      let minDiff = Infinity;
-      let activeIndex = 0;
-
-      for (let i = 0; i < slides.length; i++) {
-        const slide = slides[i] as HTMLElement;
-        const diff = Math.abs(
-          slide.getBoundingClientRect().left -
-            slideShowEl.getBoundingClientRect().left
-        );
-
-        if (diff < minDiff) {
-          minDiff = diff;
-          activeIndex = i;
+      requestAnimationFrame(() => {
+        const slideShowEl = this.slideShow.nativeElement;
+        const slides = slideShowEl.children;
+        let minDiff = Infinity;
+        let activeIndex = 0;
+        for (let i = 0; i < slides.length; i++) {
+          const slide = slides[i] as HTMLElement;
+          const diff = Math.abs(
+            slide.getBoundingClientRect().left -
+              slideShowEl.getBoundingClientRect().left
+          );
+          if (diff < minDiff) {
+            minDiff = diff;
+            activeIndex = i;
+          }
         }
-      }
-
-      this.currentIndex = activeIndex;
+        this.currentIndex = activeIndex;
+      });
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.stopAutoScroll();
   }
 }
