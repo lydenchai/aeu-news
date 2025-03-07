@@ -6,6 +6,7 @@ import {
   signal,
   ElementRef,
   ViewChild,
+  Renderer2,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
@@ -55,7 +56,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.setGreeting();
@@ -67,6 +68,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       if (this.slideShow && this.list().length > 1) {
         this.startAutoScroll();
+        this.trackScroll();
       }
     }, 500);
   }
@@ -92,6 +94,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
         setTimeout(() => {
           if (this.slideShow && this.list().length > 1) {
             this.startAutoScroll();
+            this.trackScroll();
           }
         }, 500);
       }
@@ -169,6 +172,32 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
         behavior: 'smooth',
       });
     }
+  }
+
+  private trackScroll() {
+    if (!this.slideShow?.nativeElement) return;
+
+    this.renderer.listen(this.slideShow.nativeElement, 'scroll', () => {
+      const slideShowEl = this.slideShow.nativeElement;
+      const slides = slideShowEl.children;
+      let minDiff = Infinity;
+      let activeIndex = 0;
+
+      for (let i = 0; i < slides.length; i++) {
+        const slide = slides[i] as HTMLElement;
+        const diff = Math.abs(
+          slide.getBoundingClientRect().left -
+            slideShowEl.getBoundingClientRect().left
+        );
+
+        if (diff < minDiff) {
+          minDiff = diff;
+          activeIndex = i;
+        }
+      }
+
+      this.currentIndex = activeIndex;
+    });
   }
 
   ngOnDestroy() {
