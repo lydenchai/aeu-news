@@ -46,6 +46,31 @@ body {
   margin: 0;
 }
 
+ion-content {
+  --overflow: auto; /* Allows scrolling */
+}
+
+/* Hide scrollbar for WebKit-based browsers (Chrome, Safari) */
+ion-content::-webkit-scrollbar {
+  width: 0px;
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+ion-content {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar from Ionic's internal scrolling container */
+ion-content::part(scroll) {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* Hides scrollbar in Edge */
+}
+
+ion-content::part(scroll)::-webkit-scrollbar {
+  display: none;
+}
+
 h4 {
   margin: 0;
   font-size: 24px;

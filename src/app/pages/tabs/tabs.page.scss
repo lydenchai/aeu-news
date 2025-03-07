@@ -9,6 +9,13 @@ ion-tab-button.router-link-active {
   color: #16c769 !important;
 }
 
+ion-tab-button:hover {
+  ion-label,
+  ion-icon {
+    color: #16c769 !important;
+  }
+}
+
 ion-tab-button ion-icon {
   font-size: 22px;
 }
