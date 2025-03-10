@@ -1,23 +1,21 @@
 @if(news(); as news ) {
 <ion-content [fullscreen]="true" class="ion-padding-top">
-  <ion-header collapse="condense">
-    <ion-toolbar color="transparent">
+  <ion-header collapse="condense" mode="ios">
+    <ion-toolbar color="transparent" mode="ios">
       <div class="top-content">
         <button class="back-button" (click)="onBack()">
           <ion-icon name="arrow-back"></ion-icon>
         </button>
         <ion-title size="medium">{{ news.category === "news" ? "News" : "Event"}} Details</ion-title>
-        <button class="save-button" (click)="onSave(news.id)">
+        <button id="open-toast" class="save-button" (click)="onSave(news.id)">
           <ion-icon [name]="isSaved ? 'bookmark' : 'bookmark-outline'" [color]="isSaved ? 'warning' : ''">
           </ion-icon>
         </button>
       </div>
     </ion-toolbar>
   </ion-header>
-  <div class="ion-padding">
-    @if (news.images) {
-    <img [src]="news.thumbnail" [alt]="news.title" class="news-image" />
-    }
+  <div class="ion-padding-top ion-padding-start ion-padding-end">
+    <img [src]="news.thumbnail ? news.thumbnail : news.images[0]" [alt]="news.title" class="news-image" />
     <div class="chip-date">
       <ion-chip class="ion-text-capitalize">{{ news.category }}</ion-chip>
       <div class="date news-content"> <ion-icon name="calendar-clear-outline"></ion-icon>
@@ -27,9 +25,9 @@
     <h3 class="news-title ion-no-margin">{{ news.title }}</h3>
     <div class="divider"></div>
     <div class="news-content">
-      <p>{{ news.content }}</p>
+      <ion-text>{{ news.content }}</ion-text>
     </div>
-    @for (image of news.images.slice(1); track $index) {
+    @for (image of news.images; track $index) {
     <img [src]="image" [alt]="news.title" class="news-image ion-margin-bottom" />
     }
   </div>

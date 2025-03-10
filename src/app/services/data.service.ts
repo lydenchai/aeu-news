@@ -240,12 +240,12 @@ export class DataService extends BaseCrudService<News> {
     this.loadFavoriteNews(); // Load saved news on initialization
   }
 
-  // Get all news items
+  // Get all items
   getList(): Observable<News[]> {
     return of(this.fakeData);
   }
 
-  // Get a single news item by ID
+  // Get a single item by ID
   getOne(id: number): Observable<News | undefined> {
     const newsItem: News | undefined = this.fakeData.find(
       (item) => item.id === id

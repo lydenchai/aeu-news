@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { MongoObject } from '../types/mongo-object';
-import { BaseDatatable } from '../types/base-datatable';
 import { HttpClientService } from './http-client.service';
+import { BaseDataTable } from '../types/base-data-table';
 
 export class BaseCrudService<T> {
   protected path: string = '';
@@ -33,7 +33,7 @@ export class BaseCrudService<T> {
     order?: -1 | 1;
     [key: string]: any;
   }) {
-    return this.httpClientService.getJSON<BaseDatatable<T>>(this.path, {
+    return this.httpClientService.getJSON<BaseDataTable<T>>(this.path, {
       data,
       isAlertError: true,
       isLoading: true,

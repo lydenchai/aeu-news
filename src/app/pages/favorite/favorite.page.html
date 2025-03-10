@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar class="ion-no-padding">
+  <ion-header collapse="condense" mode="ios">
+    <ion-toolbar class="ion-no-padding" mode="ios">
       <div class="header ion-padding">
         <div class="">
           <h4>Favorite</h4>
@@ -13,12 +13,12 @@
     </ion-toolbar>
   </ion-header>
   @if(list().length > 0){
-  <ion-list>
+  <ion-list mode="ios">
     @for (news of list(); track news.id) {
     <app-news-card [data]="news"></app-news-card>
     }
   </ion-list>
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" mode="ios">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
   }@else {

@@ -4,11 +4,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  img {
+    width: 280px;
+    margin-left: 20px;
+    object-fit: cover;
+  }
 }
 
 button {
   font-size: 14px;
-  padding: 16px 24px;
+  padding: 14px 24px;
   border-radius: 25px;
   background: #fff;
   background: #16c769;

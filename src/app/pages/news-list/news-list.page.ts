@@ -126,7 +126,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onIonInfinite(event: InfiniteScrollCustomEvent): void {
-    this.fetchNews();
+    this.filteredList();
     setTimeout(() => event.target.complete(), 500);
   }
 

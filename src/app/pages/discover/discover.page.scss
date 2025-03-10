@@ -1,18 +1,3 @@
-.back-button {
-  width: 40px;
-  height: 40px;
-  margin-left: 10px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #eeeeee;
-
-  ion-icon {
-    font-size: 18px;
-    color: #000000;
-  }
-}
-
 .header {
   width: 100%;
   padding-bottom: 16px;
@@ -73,12 +58,12 @@
   }
 }
 
-::ng-deep ion-chip.active {
+ion-chip.active {
   background: #16c769 !important;
   color: #fff !important;
 }
 
-::ng-deep ion-chip.inactive {
+ion-chip.inactive {
   background: #eeeeee !important;
   color: #888 !important;
 }

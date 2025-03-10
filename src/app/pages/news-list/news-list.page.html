@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar class="ion-no-padding">
+  <ion-header collapse="condense" mode="ios">
+    <ion-toolbar class="ion-no-padding" mode="ios">
       <div class="header ion-padding">
         <div class="left">
           <img class="aeu-logo" src="../../../assets/images/aeu-logo.png" alt="AEU Logo">
@@ -30,10 +30,10 @@
     <div class="slide-show" #slideShow>
       @for (news of list(); track news.id; let i = $index) {
       <div class="news-slide">
-        <ion-card class="news-card" [style.background-image]="'url(' + news.thumbnail + ')'"
+        <ion-card class="news-card" mode="ios" [style.background-image]="'url(' + news.thumbnail + ')'"
           [style.margin-left]="'16px'" [style.margin-right]="(i === list().length - 1) ? '16px' : '0'"
           [routerLink]="['/news', news.id]">
-          <ion-chip class="ion-text-capitalize ion-margin">{{ news.category }}</ion-chip>
+          <ion-chip class="ion-text-capitalize ion-margin" mode="ios">{{ news.category }}</ion-chip>
           <div class="news-content">
             <h2 class="news-title">{{ news.title }}</h2>
           </div>
@@ -50,17 +50,17 @@
   }
   <h6 class="ion-padding-start">{{ isSearchVisible ? "All news and events" : "Recommended" }}</h6>
   @if (filteredList().length > 0) {
-  <ion-list>
+  <ion-list mode="ios">
     @for (news of filteredList(); track news.id) {
     <app-news-card [data]="news"></app-news-card>
     }
   </ion-list>
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" mode="ios">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
   } @else {
   <div class="no-data ion-padding ion-text-center">
-    <p>No news or events fount.</p>
+    <p>No news or events found.</p>
   </div>
   }
 </ion-content>

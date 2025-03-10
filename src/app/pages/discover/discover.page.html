@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="header ion-padding">
-    <ion-header collapse="condense">
-      <ion-toolbar class="ion-no-padding">
+    <ion-header collapse="condense" mode="ios">
+      <ion-toolbar class="ion-no-padding" mode="ios">
         <div>
           <h4>Discover</h4>
           <p>Your saved news and events</p>
@@ -19,6 +19,10 @@
 
   <!-- Tabs -->
   <div class="tabs-content ion-padding-horizontal">
+    <ion-chip (click)="setTab('all')" [style.background]="selectedTab() === 'all' ? '#16c769' : '#eeeeee'"
+      [style.color]="selectedTab() === 'all' ? '#fff' : '#888'">
+      All
+    </ion-chip>
     <ion-chip (click)="setTab('news')" [style.background]="selectedTab() === 'news' ? '#16c769' : '#eeeeee'"
       [style.color]="selectedTab() === 'news' ? '#fff' : '#888'">
       News
@@ -32,12 +36,12 @@
   <!-- News/Events list -->
   <div class="list-item">
     @if(filteredList().length > 0){
-    <ion-list>
+    <ion-list mode="ios">
       @for (item of filteredList(); track item.id) {
       <app-news-card [data]="item"></app-news-card>
       }
     </ion-list>
-    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" mode="ios">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
     }

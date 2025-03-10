@@ -32,7 +32,7 @@ import { InfiniteScrollCustomEvent } from '@ionic/core';
   ],
 })
 export class DiscoverPage implements OnInit {
-  selectedTab = signal<string>('news');
+  selectedTab = signal<string>('all');
   searchTerm = signal<string>('');
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
@@ -44,7 +44,7 @@ export class DiscoverPage implements OnInit {
   }
 
   onIonInfinite(event: InfiniteScrollCustomEvent) {
-    this.fetchNews();
+    this.filteredList();
     setTimeout(() => event.target.complete(), 500);
   }
 
@@ -76,8 +76,8 @@ export class DiscoverPage implements OnInit {
     const tab = this.selectedTab();
     this.filteredList.set(
       this.list()
-        .filter((item) => item.category === tab) // Ensure case match
-        .filter((item) => item.title.toLowerCase().includes(search)) // Search filter
+        .filter((item) => tab === 'all' || item.category === tab)
+        .filter((item) => item.title.toLowerCase().includes(search))
     );
   }
 }

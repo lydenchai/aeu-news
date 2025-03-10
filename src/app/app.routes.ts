@@ -48,7 +48,14 @@ export const routes: Routes = [
       {
         path: 'profile',
         loadComponent: () =>
-          import('./pages/profile/profile.page').then((m) => m.ProfilePage),
+          import('./pages/profile/components/profile/profile.page').then((m) => m.ProfilePage),
+      },
+      {
+        path: 'my-profile',
+        loadComponent: () =>
+          import('./pages/profile/components/my-profile/my-profile.page').then(
+            (m) => m.MyProfilePage
+          ),
       },
     ],
   },

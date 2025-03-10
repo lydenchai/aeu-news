@@ -46,6 +46,10 @@ body {
   margin: 0;
 }
 
+:root {
+  --ion-default-mode: ios;
+}
+
 ion-content {
   --overflow: auto; /* Allows scrolling */
 }
@@ -90,4 +94,25 @@ h4 {
 
 ion-infinite-scroll-content {
   --color: #666;
+}
+
+.flex {
+  display: flex;
+}
+
+.item-center {
+  display: flex;
+  align-items: center;
+}
+
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.space-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   IonTabs,
   IonTabButton,
@@ -13,7 +13,6 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { Tab } from 'src/app/types/tab';
 
 @Component({
   selector: 'app-tabs',
@@ -36,41 +35,21 @@ import { Tab } from 'src/app/types/tab';
 export class TabsPage implements OnInit, OnDestroy {
   showTabs: boolean = true;
   private unsubscribe$ = new Subject<void>();
-  readonly tabs = signal<Tab[]>([
-    {
-      route: '/home',
-      label: 'All news',
-      activeIcon: 'home',
-      inactiveIcon: 'home-outline',
-    },
-    {
-      route: '/discover',
-      label: 'Discover',
-      activeIcon: 'compass',
-      inactiveIcon: 'compass-outline',
-    },
-    {
-      route: '/favorite',
-      label: 'Favorite',
-      activeIcon: 'bookmark',
-      inactiveIcon: 'bookmark-outline',
-    },
-    {
-      route: '/profile',
-      label: 'Profile',
-      activeIcon: 'person',
-      inactiveIcon: 'person-outline',
-    },
-  ]);
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    const hiddenRoutes = ['my-profile'];
     this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const segments = event.url.split('/');
-        const lastSegment = segments.pop();
-        this.showTabs = isNaN(Number(lastSegment));
+        const lastSegment = segments.pop() || ''; // Ensure it's a string
+        const secondLastSegment = segments.pop() || ''; // Get the second last segment
+
+        // Check if the route is 'my-profile' or 'news/:id'
+        const isNewsDetail =
+          secondLastSegment === 'news' && !isNaN(Number(lastSegment));
+        this.showTabs = !hiddenRoutes.includes(lastSegment) && !isNewsDetail;
       }
     });
   }
