@@ -30,7 +30,7 @@ export class HttpClientService {
 
   getUrl(path: string, queryParams?: { [key: string]: any }) {
     let arr = path.split('/').filter((v) => v);
-    arr.unshift(environment.apiBaseUrl);
+    arr.unshift(environment?.apiBaseUrl);
     const urlPath = arr.join('/');
     if (queryParams) {
       this.clean(queryParams, true);

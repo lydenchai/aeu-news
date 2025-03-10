@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://aeu.edu.kh/kh/news',
+  apiBaseUrl: '',
 };
 
 /*
