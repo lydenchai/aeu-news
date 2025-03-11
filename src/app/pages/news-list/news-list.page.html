@@ -16,7 +16,6 @@
     </ion-toolbar>
   </ion-header>
   @if (isSearchVisible) {
-  <br>
   <div class="search-box">
     <ion-icon class="search" name="search-outline"></ion-icon>
     <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="onSearchInput($event)" />

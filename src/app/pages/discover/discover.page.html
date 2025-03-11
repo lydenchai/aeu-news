@@ -47,7 +47,7 @@
     }
     @else {
     <div class="no-data ion-padding ion-text-center">
-      <p>No {{ selectedTab() === 'news' ? 'news' : 'events' }} found.</p>
+      <p>No {{ selectedTab() === 'news' ? 'news' : (selectedTab() === 'event' ? 'events' : 'news or events') }} found.</p>
     </div>
     }
   </div>
