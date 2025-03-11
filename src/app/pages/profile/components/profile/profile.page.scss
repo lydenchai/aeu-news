@@ -31,7 +31,7 @@ ion-avatar {
 
 ion-card {
   padding: 8px 0;
-  border-radius: 15px;
+  border-radius: 16px;
 }
 
 ion-item {
@@ -56,10 +56,6 @@ ion-item {
 
     &.profile {
       background: #15d76c;
-    }
-
-    &.save {
-      background: #178bff;
     }
 
     &.notification {

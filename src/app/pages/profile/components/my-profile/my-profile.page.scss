@@ -29,16 +29,36 @@ p {
   color: #888;
 }
 
+ion-input {
+  --height: 40px !important;
+  font-size: 14px;
+  --color: #000;
+  border-radius: 8px;
+  // margin-top: 5px;
+  // --padding-start: 8px;
+  // border: 0.5px solid #eee;
+}
+
+ion-input:focus-within {
+  border-color: #89d715;
+}
+
+ion-input[disabled] {
+  background-color: #f9f9f9;
+  border-color: #ddd;
+  --color: #888;
+}
+
 ion-avatar {
   width: 80px !important;
   height: 80px !important;
+  position: relative;
 }
 
 .profile {
   width: 80px !important;
   height: 80px !important;
   object-fit: cover;
-  position: relative;
 }
 
 .upload-profile {
@@ -49,12 +69,16 @@ ion-avatar {
   background: #eee;
   border-radius: 50%;
   position: absolute;
-  left: 210px;
-  top: 130px;
+  right: 0;
+  top: 55px;
 
   ion-icon {
     font-size: 16px;
   }
+}
+
+ion-card {
+  border-radius: 16px;
 }
 
 ion-card-header {

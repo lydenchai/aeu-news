@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   IonAvatar,
   IonContent,
@@ -18,6 +18,8 @@ import {
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { NotificationComponent } from 'src/app/shares/notification/notification.component';
+import { LanguageComponent } from 'src/app/shares/language/language.component';
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +39,8 @@ import { OverlayEventDetail } from '@ionic/core/components';
     IonButtons,
     IonButton,
     IonTitle,
+    NotificationComponent,
+    LanguageComponent,
   ],
 })
 export class ProfilePage implements OnInit {

@@ -26,7 +26,7 @@
       <div class="upload-profile" (click)="uploadImage()"><ion-icon name="camera-outline"></ion-icon>
       </div>
     </ion-avatar>
-    <input type="file" #fileInput (change)="onFileChange($event)" style="display:none" />
+    <input type="file" #fileInput (change)="onFileChange($event)" [style.display]="'none'" />
     <h4>{{ name ? name : 'Ionic Dev' }}</h4>
     <p>ID: {{ id ? id : '64106' }}</p>
   </div>
@@ -38,35 +38,31 @@
         <span class="input-label">Name</span>
       </ion-card-header>
       <ion-card-content>
-        <ion-input formControlName="name" [disabled]="!isEditing()">
+        <ion-input formControlName="name">
         </ion-input>
       </ion-card-content>
-
       <ion-card-header>
         <span class="input-label">ID</span>
       </ion-card-header>
       <ion-card-content>
-        <ion-input formControlName="id" [disabled]="!isEditing()">
+        <ion-input formControlName="id">
         </ion-input>
       </ion-card-content>
-
       <ion-card-header>
         <span class="input-label">Major</span>
       </ion-card-header>
       <ion-card-content>
-        <ion-input formControlName="major" [disabled]="!isEditing()">
+        <ion-input formControlName="major">
         </ion-input>
       </ion-card-content>
-
       <ion-card-header>
         <span class="input-label">Class</span>
       </ion-card-header>
       <ion-card-content>
-        <ion-input formControlName="class" [disabled]="!isEditing()">
+        <ion-input formControlName="class">
         </ion-input>
       </ion-card-content>
     </ion-card>
   </form>
-
   }
 </ion-content>

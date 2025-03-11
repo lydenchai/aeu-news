@@ -9,7 +9,7 @@ import {
 } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
-import { NewsCardComponent } from '../shares/news-card/news-card.component';
+import { NewsCardComponent } from '../../shares/news-card/news-card.component';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
 import { InfiniteScrollCustomEvent } from '@ionic/core';
