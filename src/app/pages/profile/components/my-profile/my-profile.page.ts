@@ -59,8 +59,8 @@ export class MyProfilePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.name = this.localStorageService.get(LocalStorageEnum.Username);
-    this.id = this.localStorageService.get(LocalStorageEnum.UserId);
+    this.name = this.localStorageService.get(LocalStorageEnum.Username) || 'Ionic Dev';
+    this.id = this.localStorageService.get(LocalStorageEnum.UserId) || '00009';
     this.profileForm.controls.name.patchValue(this.name);
     this.profileForm.controls.id.patchValue(this.id);
   }

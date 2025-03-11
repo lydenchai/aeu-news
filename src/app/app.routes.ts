@@ -41,14 +41,16 @@ export const routes: Routes = [
           import('./pages/discover/discover.page').then((m) => m.DiscoverPage),
       },
       {
-        path: 'favorite',
+        path: 'save',
         loadComponent: () =>
-          import('./pages/favorite/favorite.page').then((m) => m.FavoritePage),
+          import('./pages/save/save.page').then((m) => m.SavePage),
       },
       {
         path: 'profile',
         loadComponent: () =>
-          import('./pages/profile/components/profile/profile.page').then((m) => m.ProfilePage),
+          import('./pages/profile/components/profile/profile.page').then(
+            (m) => m.ProfilePage
+          ),
       },
       {
         path: 'my-profile',

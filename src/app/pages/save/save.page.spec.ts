@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FavoritePage } from './favorite.page';
+import { SavePage } from './save.page';
 
-describe('FavoritePage', () => {
-  let component: FavoritePage;
-  let fixture: ComponentFixture<FavoritePage>;
+describe('SavePage', () => {
+  let component: SavePage;
+  let fixture: ComponentFixture<SavePage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FavoritePage);
+    fixture = TestBed.createComponent(SavePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

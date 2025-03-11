@@ -11,10 +11,10 @@
       <ion-icon [name]="isActive('/discover') ? 'compass' : 'compass-outline'"></ion-icon>
       <ion-label>Discover</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="favorite" [routerLink]="['/favorite']" routerLinkActive="router-link-active"
+    <ion-tab-button tab="save" [routerLink]="['/save']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">
-      <ion-icon [name]="isActive('/favorite') ? 'bookmark' : 'bookmark-outline'"></ion-icon>
-      <ion-label>Favorite</ion-label>
+      <ion-icon [name]="isActive('/save') ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+      <ion-label>Saved</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="profile" [routerLink]="['/profile']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">

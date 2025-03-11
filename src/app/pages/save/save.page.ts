@@ -15,9 +15,9 @@ import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
 import { InfiniteScrollCustomEvent } from '@ionic/core';
 
 @Component({
-  selector: 'app-favorite',
-  templateUrl: './favorite.page.html',
-  styleUrls: ['./favorite.page.scss'],
+  selector: 'app-save',
+  templateUrl: './save.page.html',
+  styleUrls: ['./save.page.scss'],
   standalone: true,
   imports: [
     IonInfiniteScrollContent,
@@ -29,7 +29,7 @@ import { InfiniteScrollCustomEvent } from '@ionic/core';
     NewsCardComponent,
   ],
 })
-export class FavoritePage implements OnInit {
+export class SavePage implements OnInit {
   greeting: string = '';
   readonly list = signal<News[]>([]);
 
