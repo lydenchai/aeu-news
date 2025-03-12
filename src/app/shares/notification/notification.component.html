@@ -1,30 +1,18 @@
-<ion-label [style.marginLeft]="'16px'">IN-APP NOTIFICATIONS</ion-label>
+@for (section of sections; track $index) {
+<ion-label [style.marginLeft]="'16px'">{{ section.title }}</ion-label>
 <ion-card class="ion-no-margin">
-  <ion-list [style.margin]="'10px 16px'">
+  <ion-list [style.margin]="'10px 16px'" lines="none">
+    @for (setting of section.settings; track $index) {
     <ion-item>
-      <ion-toggle color="success" [checked]="true">In-App Sounds</ion-toggle>
+      @if (setting.checked != null) {
+      <ion-toggle color="success" [checked]="setting.checked">{{ setting.title }}</ion-toggle>
+      }@else {
+      <ion-item [style.color]="'#ff0000'">
+        {{ setting.title }}
+      </ion-item>
+      }
     </ion-item>
-    <ion-item>
-      <ion-toggle color="success" [checked]="false">In-App Vibrate</ion-toggle>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-toggle color="success" [checked]="true">In-App Preview</ion-toggle>
-    </ion-item>
+    }
   </ion-list>
 </ion-card>
-<ion-label [style.marginLeft]="'16px'">BADGE COUNTER</ion-label>
-<ion-card class="ion-no-margin">
-  <ion-list lines="none" [style.margin]="'10px 16px'">
-    <ion-item>
-      <ion-toggle color="success" [checked]="false">Count Unread News</ion-toggle>
-    </ion-item>
-  </ion-list>
-</ion-card>
-<ion-label [style.marginLeft]="'16px'">Undo all custom notification setting</ion-label>
-<ion-card class="ion-no-margin">
-  <ion-list lines="none" [style.margin]="'10px 16px'">
-    <ion-item [style.color]="'#ff0000'">
-      Reset All Notifications
-    </ion-item>
-  </ion-list>
-</ion-card>
+}

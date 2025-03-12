@@ -1,15 +1,13 @@
 <ion-label [style.marginLeft]="'16px'">INTERFACE LANGUAGE</ion-label>
 <ion-card mode="ios">
+  @for (language of languages; track $index) {
   <ion-list lines="none" mode="ios">
     <ion-item>
-      <ion-label>Khmer</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>English</ion-label>
+      <ion-label>{{language}}</ion-label>
+      @if (language === 'Khmer') {
       <ion-icon name="checkmark-outline" [style.color]="'#ff0000'"></ion-icon>
-    </ion-item>
-    <ion-item>
-      <ion-label>France</ion-label>
+      }
     </ion-item>
   </ion-list>
+  }
 </ion-card>

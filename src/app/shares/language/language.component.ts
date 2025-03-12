@@ -14,6 +14,16 @@ import {
   imports: [IonIcon, IonItem, IonLabel, IonList, IonCard],
 })
 export class LanguageComponent implements OnInit {
+  languages: string[] = [
+    'English',
+    'Khmer',
+    'French',
+    'Spanish',
+    'Chinese',
+    'Japanese',
+    'Korean',
+  ];
+
   constructor() {}
 
   ngOnInit() {}
