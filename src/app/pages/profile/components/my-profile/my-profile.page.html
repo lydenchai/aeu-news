@@ -1,24 +1,16 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense" class="ion-padding" mode="ios">
+<ion-content [fullscreen]="true" class="ion-padding-top">
+  <ion-header collapse="condense" mode="ios">
     <ion-toolbar color="transparent" mode="ios">
       <div class="top-content">
-        @if (isEditing()) {
-        <div (click)="toggleEdit()">
-          Cancel
-        </div>
-        } @else {
-        <div class="back" (click)="onBack()">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-          <ion-label>Back</ion-label>
-        </div>
-        }
-        <div (click)="toggleEdit()" [style.color]="isEditing() ? '#16c769' : '#ff0000'">
-          {{ isEditing() ? 'Save' : 'Edit' }}
-        </div>
+        <button class="back-button" (click)="onBack()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        <button id="open-toast" class="save-button" (click)="toggleEdit()">
+          <ion-icon name="create-outline" [style.color]="isEditing() ? '#16c769' : '#ff0000'"></ion-icon>
+        </button>
       </div>
     </ion-toolbar>
   </ion-header>
-
   <div class="header-container ion-padding-start ion-padding-end">
     <ion-avatar aria-hidden="true">
       <img class="profile" alt="profile"
