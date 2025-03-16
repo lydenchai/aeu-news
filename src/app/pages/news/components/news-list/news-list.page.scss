@@ -162,13 +162,19 @@ ion-chip {
   width: 100%;
   position: absolute;
   bottom: 0;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.88));
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.896));
   padding: 10px;
 }
 
 .news-title {
-  font-size: 14px;
-  line-height: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
+  line-height: 25px;
+  font-size: 16px;
   margin: 0;
 }
 
