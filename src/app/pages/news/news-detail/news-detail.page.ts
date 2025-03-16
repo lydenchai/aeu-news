@@ -8,11 +8,13 @@ import {
   IonChip,
   IonText,
 } from '@ionic/angular/standalone';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
+import { NavigationService } from 'src/app/services/navigation.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-news-detail',
@@ -36,7 +38,10 @@ export class NewsDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private navCtrl: NavController,
+    private router: Router,
+    private navigationService: NavigationService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +69,11 @@ export class NewsDetailPage implements OnInit {
   }
 
   onBack() {
-    window.history.back();
+    const previousUrl = this.navigationService.getPreviousUrl();
+    if (previousUrl) {
+      this.router.navigateByUrl(previousUrl); // Go back to previous page
+    } else {
+      this.router.navigate(['/home']); // Default to Home if no history
+    }
   }
 }

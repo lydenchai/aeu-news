@@ -18,20 +18,15 @@ export const routes: Routes = [
     children: [
       {
         path: 'home',
-        children: [
-          {
-            path: '',
-            loadComponent: () =>
-              import('./pages/news/components/news-list/news-list.page').then(
-                (m) => m.NewsListPage
-              ),
-          },
-        ],
+        loadComponent: () =>
+          import('./pages/news/news-list/news-list.page').then(
+            (m) => m.NewsListPage
+          ),
       },
       {
         path: 'news/:id',
         loadComponent: () =>
-          import('./pages/news/components/news-detail/news-detail.page').then(
+          import('./pages/news/news-detail/news-detail.page').then(
             (m) => m.NewsDetailPage
           ),
       },
