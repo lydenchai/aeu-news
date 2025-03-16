@@ -11,6 +11,7 @@ import {
   IonCardContent,
   IonCardHeader,
   IonInput,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
@@ -21,6 +22,7 @@ import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
   styleUrls: ['./my-profile.page.scss'],
   standalone: true,
   imports: [
+    IonLabel,
     IonCardHeader,
     IonCardContent,
     IonCard,

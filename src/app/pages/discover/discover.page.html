@@ -4,7 +4,7 @@
       <ion-toolbar class="ion-no-padding" mode="ios">
         <div>
           <h4>Discover</h4>
-          <p>Your saved news and events</p>
+          <p>All news and events from AEU</p>
         </div>
         <div class="search-box">
           <ion-icon class="search" name="search-outline"></ion-icon>
@@ -47,7 +47,8 @@
     }
     @else {
     <div class="no-data ion-padding ion-text-center">
-      <p>No {{ selectedTab() === 'news' ? 'news' : (selectedTab() === 'event' ? 'events' : 'news or events') }} found.</p>
+      <p>No {{ selectedTab() === 'news' ? 'news' : (selectedTab() === 'event' ? 'events' : 'news or events') }} found.
+      </p>
     </div>
     }
   </div>

@@ -18,7 +18,6 @@ export class LanguageComponent implements OnInit {
     'English',
     'Khmer',
     'French',
-    'Spanish',
     'Chinese',
     'Japanese',
     'Korean',
