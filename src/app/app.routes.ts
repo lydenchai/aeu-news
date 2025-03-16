@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TabsPage } from './pages/tabs/tabs.page';
+import { TabsPage } from './components/tabs/tabs.page';
 
 export const routes: Routes = [
   {
@@ -22,7 +22,7 @@ export const routes: Routes = [
           {
             path: '',
             loadComponent: () =>
-              import('./pages/news-list/news-list.page').then(
+              import('./pages/news/components/news-list/news-list.page').then(
                 (m) => m.NewsListPage
               ),
           },
@@ -31,7 +31,7 @@ export const routes: Routes = [
       {
         path: 'news/:id',
         loadComponent: () =>
-          import('./pages/news-detail/news-detail.page').then(
+          import('./pages/news/components/news-detail/news-detail.page').then(
             (m) => m.NewsDetailPage
           ),
       },
@@ -64,6 +64,8 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage),
+      import('./components/not-found/not-found.page').then(
+        (m) => m.NotFoundPage
+      ),
   },
 ];
