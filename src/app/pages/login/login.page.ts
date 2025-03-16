@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginPage {
   constructor(private router: Router) {}
 
-  goToHome() {
+  getStarted() {
     this.router.navigate(['/home']);
   }
 }
