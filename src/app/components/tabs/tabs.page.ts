@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   IonTabs,
   IonTabButton,
@@ -33,7 +33,7 @@ import { Subject, takeUntil } from 'rxjs';
   ],
 })
 export class TabsPage implements OnInit, OnDestroy {
-  showTabs: boolean = true;
+  showTabs = signal<boolean>(true);
   private unsubscribe$ = new Subject<void>();
 
   constructor(private router: Router) {}
@@ -49,7 +49,7 @@ export class TabsPage implements OnInit, OnDestroy {
         // Check if the route is 'my-profile' or 'news/:id'
         const isNewsDetail =
           secondLastSegment === 'news' && !isNaN(Number(lastSegment));
-        this.showTabs = !hiddenRoutes.includes(lastSegment) && !isNewsDetail;
+        this.showTabs.set(!hiddenRoutes.includes(lastSegment) && !isNewsDetail);
       }
     });
   }

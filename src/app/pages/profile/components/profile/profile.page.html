@@ -4,14 +4,14 @@
       <div class="header-container ion-padding">
         <ion-avatar aria-hidden="true" class="ion-margin">
           <img class="profile-pic" alt="profile"
-            [src]="image ? image :'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+            [src]="image() ? image() :'https://ionicframework.com/docs/img/demos/avatar.svg'" />
         </ion-avatar>
-        <h4>{{ name ? name : 'Ionic Dev' }}</h4>
-        <p>ID: {{ id ? id :'64106' }}</p>
+        <h4>{{ name() ? name() : 'Ionic Dev' }}</h4>
+        <p>ID: {{ id() ? id() :'64106' }}</p>
       </div>
     </ion-toolbar>
   </ion-header>
-  @for (menuSection of menuSections; track $index) {
+  @for (menuSection of menuSections(); track $index) {
   <ion-card mode="ios">
     @for (menu of menuSection?.menus; track $index) {
     <ion-list lines="none" mode="ios">
@@ -34,23 +34,23 @@
   }
 
   <!-- Modal Component -->
-  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+  <ion-modal [isOpen]="isModalOpen()" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-header mode="ios">
         <ion-toolbar mode="ios">
           <ion-buttons slot="start">
             <ion-button (click)="cancel()">Cancel</ion-button>
           </ion-buttons>
-          <ion-title>{{ currentModalTitle }}</ion-title>
+          <ion-title>{{ currentModalTitle() }}</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="confirm()" [strong]="true">Done</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        @if (currentModalTitle === 'Notifications') {
+        @if (currentModalTitle() === 'Notifications') {
         <app-notification></app-notification>
-        } @else if (currentModalTitle === 'Language'){
+        } @else if (currentModalTitle() === 'Language'){
         <app-language></app-language>
         }
       </ion-content>

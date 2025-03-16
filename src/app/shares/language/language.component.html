@@ -1,6 +1,6 @@
 <ion-label [style.marginLeft]="'16px'">INTERFACE LANGUAGE</ion-label>
 <ion-card mode="ios">
-  @for (language of languages; track $index) {
+  @for (language of languages(); track $index) {
   <ion-list lines="none" mode="ios">
     <ion-item>
       <ion-label>{{language}}</ion-label>

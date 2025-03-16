@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   IonItem,
   IonList,
@@ -14,7 +14,7 @@ import {
   imports: [IonItem, IonList, IonToggle, IonCard, IonLabel],
 })
 export class NotificationComponent implements OnInit {
-  sections: any[] = [
+  sections = signal<any[]>([
     {
       title: 'IN-APP NOTIFICATIONS',
       settings: [
@@ -50,7 +50,7 @@ export class NotificationComponent implements OnInit {
         },
       ],
     },
-  ];
+  ]);
 
   constructor() {}
 

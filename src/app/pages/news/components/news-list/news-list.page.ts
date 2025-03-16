@@ -23,7 +23,7 @@ import {
 } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/services/data.service';
 import { News } from 'src/app/types/news';
-import { NewsCardComponent } from '../../../shares/news-card/news-card.component';
+import { NewsCardComponent } from '../../../../shares/news-card/news-card.component';
 
 @Component({
   selector: 'app-news-list',
@@ -48,11 +48,11 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('slideShow', { static: false })
   slideShow!: ElementRef<HTMLElement>;
 
-  currentIndex = 0;
-  private intervalId: any;
-  greeting: string = '';
+  currentIndex = signal<number>(0);
+  greeting = signal<string>('');
   searchTerm = signal<string>('');
-  isSearchVisible = false;
+  isSearchVisible = signal<boolean>(false);
+  private intervalId = signal<any>(null);
   readonly list = signal<News[]>([]);
   readonly filteredList = signal<News[]>([]);
 
@@ -69,12 +69,13 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
 
   private setGreeting(): void {
     const hour = new Date().getHours();
-    this.greeting =
+    this.greeting.set(
       hour >= 5 && hour < 12
         ? 'Good Morning!'
         : hour >= 12 && hour < 18
         ? 'Good Afternoon!'
-        : 'Good Evening!';
+        : 'Good Evening!'
+    );
   }
 
   async fetchNews() {
@@ -109,7 +110,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   toggleSearch(): void {
-    this.isSearchVisible = !this.isSearchVisible;
+    this.isSearchVisible.set(!this.isSearchVisible());
     this.clearSearch();
   }
 
@@ -132,30 +133,30 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
 
   private startAutoScroll(): void {
     this.stopAutoScroll();
-    this.intervalId = setInterval(() => this.nextSlide(), 5000);
+    this.intervalId.set(setInterval(() => this.nextSlide(), 5000));
   }
 
   private stopAutoScroll(): void {
-    clearInterval(this.intervalId);
-    this.intervalId = null;
+    clearInterval(this.intervalId());
+    this.intervalId.set(null);
   }
 
   private nextSlide(): void {
     if (this.list().length > 0) {
-      this.currentIndex = (this.currentIndex + 1) % this.list().length;
-      this.scrollToSlide(this.currentIndex);
+      this.currentIndex.set((this.currentIndex() + 1) % this.list().length);
+      this.scrollToSlide(this.currentIndex());
     }
   }
 
   goToSlide(index: number): void {
     if (index >= 0 && index < this.list().length) {
-      this.currentIndex = index;
+      this.currentIndex.set(index);
       this.scrollToSlide(index);
     }
   }
 
   private scrollToSlide(index: number): void {
-    if (!this.isSearchVisible && this.slideShow?.nativeElement) {
+    if (!this.isSearchVisible() && this.slideShow?.nativeElement) {
       const slideWidth = this.slideShow.nativeElement.clientWidth;
       this.slideShow.nativeElement.scrollTo({
         left: slideWidth * index,
@@ -184,7 +185,7 @@ export class NewsListPage implements OnInit, AfterViewInit, OnDestroy {
             activeIndex = i;
           }
         }
-        this.currentIndex = activeIndex;
+        this.currentIndex.set(activeIndex);
       });
     });
   }

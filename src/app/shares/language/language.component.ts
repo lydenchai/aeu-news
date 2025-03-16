@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   IonIcon,
   IonItem,
@@ -14,14 +14,14 @@ import {
   imports: [IonIcon, IonItem, IonLabel, IonList, IonCard],
 })
 export class LanguageComponent implements OnInit {
-  languages: string[] = [
+  languages = signal<string[]>([
     'English',
     'Khmer',
     'French',
     'Chinese',
     'Japanese',
     'Korean',
-  ];
+  ]);
 
   constructor() {}
 

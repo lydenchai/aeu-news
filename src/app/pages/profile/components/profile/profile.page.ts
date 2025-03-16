@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { single } from 'rxjs';
+import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonAvatar,
@@ -44,7 +45,7 @@ import { LanguageComponent } from 'src/app/shares/language/language.component';
   ],
 })
 export class ProfilePage implements OnInit {
-  menuSections: any[] = [
+  menuSections = signal<any[]>([
     {
       menus: [
         {
@@ -93,13 +94,13 @@ export class ProfilePage implements OnInit {
         },
       ],
     },
-  ];
+  ]);
 
-  name?: string;
-  id?: string;
-  isModalOpen: boolean = false;
-  currentModalTitle: string = '';
-  image: string | null = null;
+  name = signal<string>('');
+  id = signal<string>('');
+  isModalOpen = signal<boolean>(false);
+  currentModalTitle = signal<string>('');
+  image = signal<string | null>(null);
 
   constructor(
     private router: Router,
@@ -109,16 +110,16 @@ export class ProfilePage implements OnInit {
   ngOnInit(): void {}
 
   openModal(title: string) {
-    this.currentModalTitle = title;
-    this.isModalOpen = true;
+    this.currentModalTitle.set(title);
+    this.isModalOpen.set(true);
   }
 
   cancel() {
-    this.isModalOpen = false;
+    this.isModalOpen.set(false);
   }
 
   confirm() {
-    this.isModalOpen = false;
+    this.isModalOpen.set(false);
   }
 
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {}
@@ -132,9 +133,9 @@ export class ProfilePage implements OnInit {
       LocalStorageEnum.UserProfile
     );
     if (storedImage) {
-      this.image = storedImage;
+      this.image.set(storedImage);
     }
-    this.name = this.localStorageService.get(LocalStorageEnum.Username);
-    this.id = this.localStorageService.get(LocalStorageEnum.UserId);
+    this.name.set(this.localStorageService.get(LocalStorageEnum.Username));
+    this.id.set(this.localStorageService.get(LocalStorageEnum.UserId));
   }
 }

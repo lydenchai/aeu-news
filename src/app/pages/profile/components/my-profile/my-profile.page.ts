@@ -36,10 +36,10 @@ import { LocalStorageEnum } from 'src/app/types/enums/local-storage.enum';
   ],
 })
 export class MyProfilePage implements OnInit {
-  isEditing = signal(false);
-  name: any;
-  id: any;
-  image: string | null = null;
+  isEditing = signal<boolean>(false);
+  name = signal<string>('');
+  id = signal<string>('');
+  image = signal<string | null>(null);
 
   profileForm = new FormGroup({
     name: new FormControl<string | null>(''),
@@ -54,16 +54,19 @@ export class MyProfilePage implements OnInit {
   ) {
     const storedImage = localStorageService.get(LocalStorageEnum.UserProfile);
     if (storedImage) {
-      this.image = storedImage;
+      this.image.set(storedImage);
     }
   }
 
   ngOnInit(): void {
-    this.name =
-      this.localStorageService.get(LocalStorageEnum.Username) || 'Ionic Dev';
-    this.id = this.localStorageService.get(LocalStorageEnum.UserId) || '00009';
-    this.profileForm.controls.name.patchValue(this.name);
-    this.profileForm.controls.id.patchValue(this.id);
+    this.name.set(
+      this.localStorageService.get(LocalStorageEnum.Username) || 'Ionic Dev'
+    );
+    this.id.set(
+      this.localStorageService.get(LocalStorageEnum.UserId) || '00009'
+    );
+    this.profileForm.controls.name.patchValue(this.name());
+    this.profileForm.controls.id.patchValue(this.id());
   }
 
   uploadImage() {
@@ -80,17 +83,20 @@ export class MyProfilePage implements OnInit {
         // Convert the image to base64 and store it in localStorage
         const base64Image = reader.result as string;
         this.localStorageService.set(LocalStorageEnum.UserProfile, base64Image);
-        this.image = base64Image; // Update the image display in the UI
+
+        // Update the image display in the UI
+        this.image.set(base64Image);
       };
-      reader.readAsDataURL(file); // Convert the image to base64
+      // Convert the image to base64
+      reader.readAsDataURL(file);
     }
   }
 
   toggleEdit() {
     if (this.isEditing()) {
       const userInfo: any = this.profileForm.value;
-      this.name = userInfo.name;
-      this.id = userInfo.id;
+      this.name.set(userInfo.name);
+      this.id.set(userInfo.id);
       this.localStorageService.set(LocalStorageEnum.Username, userInfo.name);
       this.localStorageService.set(LocalStorageEnum.UserId, userInfo.id);
     }

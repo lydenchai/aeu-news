@@ -5,7 +5,7 @@
         <div class="left">
           <img class="aeu-logo" src="../../../assets/images/aeu-logo.png" alt="AEU Logo">
           <div>
-            <h5>{{ greeting }}</h5>
+            <h5>{{ greeting() }}</h5>
             <h6>Here's your news feed</h6>
           </div>
         </div>
@@ -15,7 +15,7 @@
       </div>
     </ion-toolbar>
   </ion-header>
-  @if (isSearchVisible) {
+  @if (isSearchVisible()) {
   <div class="search-box">
     <ion-icon class="search" name="search-outline"></ion-icon>
     <input type="text" placeholder="Search..." [value]="searchTerm()" (input)="onSearchInput($event)" />
@@ -42,12 +42,12 @@
     </div>
     <div class="index-indicator">
       @for (news of list(); track news.id; let i = $index) {
-      <span [class.active]="currentIndex === i" (click)="goToSlide(i)"></span>
+      <span [class.active]="currentIndex() === i" (click)="goToSlide(i)"></span>
       }
     </div>
   </div>
   }
-  <h6 class="ion-padding-start">{{ isSearchVisible ? "All news and events" : "Recommended" }}</h6>
+  <h6 class="ion-padding-start">{{ isSearchVisible() ? "All news and events" : "Recommended" }}</h6>
   @if (filteredList().length > 0) {
   <ion-list mode="ios">
     @for (news of filteredList(); track news.id) {

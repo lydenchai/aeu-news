@@ -8,7 +8,7 @@
         </button>
         <ion-title size="medium">{{ news.category === "news" ? "News" : "Event"}} Details</ion-title>
         <button id="open-toast" class="save-button" (click)="onSave(news.id)">
-          <ion-icon [name]="isSaved ? 'bookmark' : 'bookmark-outline'" [color]="isSaved ? 'warning' : ''">
+          <ion-icon [name]="isSaved() ? 'bookmark' : 'bookmark-outline'" [color]="isSaved() ? 'warning' : ''">
           </ion-icon>
         </button>
       </div>

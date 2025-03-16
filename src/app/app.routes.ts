@@ -19,14 +19,14 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./pages/news/news-list/news-list.page').then(
+          import('./pages/news/components/news-list/news-list.page').then(
             (m) => m.NewsListPage
           ),
       },
       {
         path: 'news/:id',
         loadComponent: () =>
-          import('./pages/news/news-detail/news-detail.page').then(
+          import('./pages/news/components/news-detail/news-detail.page').then(
             (m) => m.NewsDetailPage
           ),
       },

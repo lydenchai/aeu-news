@@ -1,5 +1,5 @@
 <ion-tabs>
-  @if (showTabs) {
+  @if (showTabs()) {
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home" [routerLink]="['/home']" routerLinkActive="router-link-active"
       [routerLinkActiveOptions]="{ exact: true }">

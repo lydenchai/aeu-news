@@ -30,7 +30,6 @@ import { InfiniteScrollCustomEvent } from '@ionic/core';
   ],
 })
 export class SavePage implements OnInit {
-  greeting: string = '';
   readonly list = signal<News[]>([]);
 
   constructor(

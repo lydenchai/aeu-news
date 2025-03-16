@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoadingService {
-  private _isLoading = false;
+  private _isLoading = signal<boolean>(false);
   private _isLoading$ = new BehaviorSubject(false);
   isLoading$: Observable<boolean> = this._isLoading$;
   counter = 0;
@@ -18,13 +18,13 @@ export class LoadingService {
     } else {
       this.counter = this.counter - 1 < 0 ? 0 : this.counter - 1;
     }
-    this._isLoading = this.counter > 0;
-    this._isLoading$.next(this._isLoading);
+    this._isLoading.set(this.counter > 0);
+    this._isLoading$.next(this._isLoading());
   }
 
   forceStop() {
     this.counter = 0;
-    this._isLoading = false;
-    this._isLoading$.next(this._isLoading);
+    this._isLoading.set(false);
+    this._isLoading$.next(this._isLoading());
   }
 }
